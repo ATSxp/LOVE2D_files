@@ -8,23 +8,22 @@ pad.touches = {}
 local sw = 1280
 local sh = 720
 
-pad.dpad = {}
-
 pad.buttonw = 96
 pad.buttonh = 96
 
-pad.dpad.buttons = 
-{
-	{name = "up", x = pad.buttonw, y = pad.buttonh * 5, image = nil},
-	{name = "down", x = pad.buttonw, y = pad.buttonh * 7, image = nil},
-	{name = "left", x = 0, y = pad.buttonh * 6, image = nil},
-	{name = "right", x = pad.buttonw * 2, y = pad.buttonh * 6, image = nil},
-	
-	{name = "a", x = 1280 - pad.buttonw * 3, y = pad.buttonh * 6, image = nil},
-}
+pad.dpad = {}
+pad.dpad.buttons = {}
 
-
-pad.widgets = {pad.dpad}
+function pad:setInitialButton()
+	table.insert(pad.dpad.buttons,
+	{name = "up", x = pad.buttonw, y = pad.buttonh * 5, image = nil})
+	table.insert(pad.dpad.buttons,
+	{name = "down", x = pad.buttonw, y = pad.buttonh * 7, image = nil})
+	table.insert(pad.dpad.buttons,
+	{name = "left", x = 0, y = pad.buttonh * 6, image = nil})
+	table.insert(pad.dpad.buttons,
+	{name = "right", x = pad.buttonw * 2, y = pad.buttonh * 6, image = nil})
+end
 
 function pad:getDimensions()
 	return pad.buttonw,pad.buttonh
@@ -42,7 +41,7 @@ function pad:addButtonImage(img,buttonName)
 	end
 end
 
-function pad:addButton(buttonName,x,y,img,padMode)
+function pad:addButton(buttonName,x,y,img)
 	table.insert(pad.dpad.buttons,{
 		name = buttonName,
 		x = x or 0,
@@ -111,14 +110,6 @@ function pad:draw()
 	love.graphics.setColor(1,1,1,1)
 end
 
-function pad:isDown(key)
-	for _,b in ipairs(pad.dpad.buttons)do
-		if b.isDown and b.name == key then 
-			return true
-		end
-	end
-end
-
 function pad:update()
 	pad.touches = love.touch.getTouches()
 	for _,button in ipairs(pad.dpad.buttons)do
@@ -134,6 +125,14 @@ function pad:update()
 				ty <= button.y + pad.buttonh then
 						button.isDown = true
 			end
+		end
+	end
+end
+
+function pad:isDown(key)
+	for _,b in ipairs(pad.dpad.buttons)do
+		if b.isDown and b.name == key then 
+			return true
 		end
 	end
 end
