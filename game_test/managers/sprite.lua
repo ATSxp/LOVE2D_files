@@ -7,12 +7,12 @@ function Sprite:new(anim)
     s.name = anim.name
 
     function s:set(name)
+        --self.anims[self.name]:reset()
         self.name = name
-        self.anims[self.name]:reset()
     end
 
     function s:add(anim)
-        self.anims[self.name] = anim
+        self.anims[anim.name] = anim
     end
     s:add(anim)
 
@@ -21,7 +21,7 @@ function Sprite:new(anim)
     end
 
     function s:draw(p)
-        spr(self.anims[self.name].curFrame, p.x, p.y, 0, 2, 2)
+        sprc(self.anims[self.name].sheet, self.anims[self.name].curFrame, p.x, p.y, 0, 4, 4)
     end
     return s
 end

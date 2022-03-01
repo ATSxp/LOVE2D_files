@@ -7,6 +7,7 @@ State.current = ""
 function State:set(name)
     self.current = name
     self.states[self.current]:on_active()
+    self.states[self.current]:load()
 end
 
 function State:add(e,name)

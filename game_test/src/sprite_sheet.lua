@@ -1,53 +1,60 @@
 -- Assets --
 local q = love.graphics.newQuad
 love.graphics.setDefaultFilter("nearest","nearest")
-local font = love.graphics.newFont("Mario-Kart-DS.ttf")
+local font = love.graphics.newFont("Perfect DOS VGA 437 Win.ttf")
 love.graphics.setFont(font)
 
 sheet = {
     love.graphics.newImage("assets/03-soldier.png"), -- 1
+    love.graphics.newImage("assets/04-scout.png"), -- 2
+    love.graphics.newImage("assets/01-generic.png"), -- 3
+    love.graphics.newImage("assets/02-bard.png"), -- 4
+    love.graphics.newImage("assets/05-devout.png"), -- 5
+    love.graphics.newImage("assets/06-conjurer.png"), -- 6
+
 }
 
-sprites = {
-    {q(0,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 1
-    {q(16,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 2
-    {q(32,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 3
-    {q(48,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 4
-    {q(64,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 5
-    {q(80,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 6
-    {q(96,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 7
-    {q(112,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 8
-    {q(128,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 9
-    {q(144,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 10
-    {q(160,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 11
-    {q(176,0,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 12
+sprites = {}
 
-    {q(0,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 13
-    {q(16,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 14
-    {q(32,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 15
-    {q(48,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 16
-    {q(64,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 17
-    {q(80,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 18
-    {q(96,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 19
-    {q(112,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 20
-    {q(128,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 21
-    {q(144,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 22
-    {q(160,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 23
-    {q(176,16,16,16,sheet[1]:getWidth(),sheet[1]:getHeight()),sheet[1]}, -- 24
-}
+item = 1
+
+function spriteSheetUpdate()
+    local x, y,id = 0, 0, 0
+    for i = 0, 95, 1 do
+        sprites[i+1] = {q(id,y,16,16,sheet[item]:getWidth(),sheet[item]:getHeight()), sheet[item]}
+        id = id + 16
+        x = x + 64
+        if x > 16 * 48 - 64 then
+            x = 0
+            id = 0
+            y = y + 16
+        end
+    end
+end
 
 function getSpriteSheet()
     local x, y = 0, 0
     for i = 1, #sprites do
         local v = sprites
         love.graphics.draw(v[i][2], v[i][1], x, y, 0, 4, 4)
-        love.graphics.setColor(0.9, 0.9, 0.2)
+        --love.graphics.setColor(1, 0,8, 0.5)
         love.graphics.print(i, x, y + 32, 0, 2, 2)
-        love.graphics.setColor(1, 1, 1)
+        --love.graphics.setColor(1, 1, 1)
         x = x + 64
         if x > 16 * 48 - 64 then
             x = 0
             y = y + 64
         end
+    end
+
+    local screenh = love.graphics.getHeight()
+    love.graphics.print(item.."  de  "..#sheet, 0, screenh-30, 0, 2, 2)
+end
+
+function spriteKeypressed(key, scancode, isrepeat)
+    if key == "a" and item > 1 then
+        item = item - 1
+    elseif key == "d" and item < #sheet then
+        item = item + 1
     end
 end

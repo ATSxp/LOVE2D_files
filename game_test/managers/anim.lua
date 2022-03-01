@@ -1,11 +1,12 @@
 -- Animation Manager --
 Anim = {}
 
-function Anim:new(name, frames, speed, loop)
+function Anim:new(name, sheet, frames, speed, loop)
     local s = {}
     s.name = name
     s.frames = frames or {}
     s.curFrame = frames[1]
+    s.sheet = sheet or 1
     s.speed  = speed or 8
     s.loop = loop
     s.indx = 0
@@ -14,7 +15,7 @@ function Anim:new(name, frames, speed, loop)
     function s:update(dt)
         if tick >= self.tick and #self.frames > 0 then
             if self.loop then
-                self.indx = (self.indx + 1)%#self.frames
+                self.indx = (self.indx + 1) % #self.frames
                 self.curFrame = self.frames[self.indx + 1]
             else
                 self.indx = self.indx < #self.frames and self.indx + 1 or #self.frames
