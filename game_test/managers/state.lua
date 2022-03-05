@@ -27,7 +27,7 @@ function State:push(e)
     table.insert(self.overlay,1,e)
     e:on_active()
 end
-
+    
 function State:load()
     self.states[self.current]:load()
     for i = #self.overlay, 1, -1 do

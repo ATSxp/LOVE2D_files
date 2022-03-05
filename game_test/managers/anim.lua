@@ -8,7 +8,7 @@ function Anim:new(name, sheet, frames, speed, loop)
     s.curFrame = frames[1]
     s.sheet = sheet or 1
     s.speed  = speed or 8
-    s.loop = loop
+    s.loop = loop or false
     s.indx = 0
     s.tick = 0
 
@@ -30,5 +30,4 @@ function Anim:new(name, sheet, frames, speed, loop)
     end
     return s
 end
-
 return Anim

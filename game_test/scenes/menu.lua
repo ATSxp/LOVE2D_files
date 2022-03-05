@@ -55,11 +55,11 @@ end
 
 function Menu:keypressed(key, scancode, isrepeat)
     if mgr.current ~= "menu" then return end
-    if key == "w" and self.indx > 1 then
-        print("[ W ] Pressed")
+    if key == "up" and self.indx > 1 then
+        print("[ UP ] Pressed")
         self.indx = self.indx - 1
-    elseif key == "s" and self.indx < #self.items then
-        print("[ S ] Pressed")
+    elseif key == "down" and self.indx < #self.items then
+        print("[ DOWN ] Pressed")
         self.indx = self.indx + 1
     end
 end

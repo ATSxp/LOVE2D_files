@@ -7,7 +7,7 @@ STI = require "libs/sti"
 
 function love.load()
     global_pause = false
-    love.window.setMode(800, 600, {fullscreen = true})
+    love.window.setMode(800, 600, {fullscreen = false})
     screenw, screenh = love.graphics.getDimensions()
     mgr:add(Menu,"menu")
     mgr:add(Game,"game")

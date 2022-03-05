@@ -1,60 +1,65 @@
 -- Assets --
 local q = love.graphics.newQuad
-love.graphics.setDefaultFilter("nearest","nearest")
+local newImg = love.graphics.newImage
+love.graphics.setDefaultFilter("nearest", "nearest")
 local font = love.graphics.newFont("Perfect DOS VGA 437 Win.ttf")
 love.graphics.setFont(font)
 
 sheet = {
-    love.graphics.newImage("assets/03-soldier.png"), -- 1
-    love.graphics.newImage("assets/04-scout.png"), -- 2
-    love.graphics.newImage("assets/01-generic.png"), -- 3
-    love.graphics.newImage("assets/02-bard.png"), -- 4
-    love.graphics.newImage("assets/05-devout.png"), -- 5
-    love.graphics.newImage("assets/06-conjurer.png"), -- 6
-
+    newImg("assets/Chara1.png"),
+    newImg("assets/chara2.png"),
+    newImg("assets/chara3.png"),
+    newImg("assets/chara4.png"),
+    newImg("assets/chest.png"),
+    newImg("assets/coin.png"),
+    newImg("assets/crystal-sheet.png"),
+    newImg("assets/spike.png"),
 }
 
 sprites = {}
 
 item = 1
+local w, h = 16, 16
 
 function spriteSheetUpdate()
     local x, y,id = 0, 0, 0
-    for i = 0, 95, 1 do
-        sprites[i+1] = {q(id,y,16,16,sheet[item]:getWidth(),sheet[item]:getHeight()), sheet[item]}
-        id = id + 16
-        x = x + 64
-        if x > 16 * 48 - 64 then
+    for i = 1, sheet[item]:getWidth() do
+        sprites[i] = {q(id, y, w, h, sheet[item]:getWidth(), sheet[item]:getHeight()), sheet[item]}
+        id = id + w
+        x = x + (w * 4)
+        if x > (w * 48) - (w * 4) then
             x = 0
             id = 0
-            y = y + 16
+            y = y + h
         end
     end
+    print(sheet[item]:getWidth())
 end
 
 function getSpriteSheet()
     local x, y = 0, 0
-    for i = 1, #sprites do
-        local v = sprites
-        love.graphics.draw(v[i][2], v[i][1], x, y, 0, 4, 4)
-        --love.graphics.setColor(1, 0,8, 0.5)
-        love.graphics.print(i, x, y + 32, 0, 2, 2)
-        --love.graphics.setColor(1, 1, 1)
-        x = x + 64
-        if x > 16 * 48 - 64 then
-            x = 0
-            y = y + 64
+    for k = 1, (sheet[item]:getWidth() / w)do
+        for i = 1, #sprites[k] do
+            local v = sprites
+            love.graphics.draw(v[item][2], v[i][1], x, y, 0, 4, 4)
+            love.graphics.print(i, x, y + 32, 0, 2, 2)
+            x = x + (w * 4)
+            if x > (w * 48) - (w * 4) then
+                x = 0
+                y = y + (h * 4)
+            end
         end
     end
 
     local screenh = love.graphics.getHeight()
     love.graphics.print(item.."  de  "..#sheet, 0, screenh-30, 0, 2, 2)
+    -- print(#sprites)
 end
 
 function spriteKeypressed(key, scancode, isrepeat)
-    if key == "a" and item > 1 then
+    if key == "left" and item > 1 then
         item = item - 1
-    elseif key == "d" and item < #sheet then
+    elseif key == "right" and item < #sheet then
         item = item + 1
     end
 end

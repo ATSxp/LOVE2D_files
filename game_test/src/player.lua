@@ -49,10 +49,10 @@ function Player:update(dt)
         "idle-right",
     }
 
-    if key("w")then
+    if key("up")then
         self.vel.y = - self.speed
         self.dir = 1
-    elseif key("s")then
+    elseif key("down")then
         self.vel.y = self.speed
         self.dir = 2
     else
@@ -60,10 +60,10 @@ function Player:update(dt)
         self.sp:set(anim_idle[self.dir])
     end
 
-    if key("a")then
+    if key("left")then
         self.vel.x = - self.speed
         self.dir = 3
-    elseif key("d")then
+    elseif key("right")then
         self.vel.x = self.speed
         self.dir = 4
     else
