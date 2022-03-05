@@ -8,15 +8,15 @@ function Player:load()
 
     -- animations
     -- idle
-    self.sp:add(Anim:new("idle-left", 1, {14}, 8, true))
-    self.sp:add(Anim:new("idle-right", 1, {26}, 8, true))
-    self.sp:add(Anim:new("idle-up", 1, {38}, 8, true))
+    self.sp:add(Anim:new("idle-up", 1, {20}, 8, true))
+    self.sp:add(Anim:new("idle-left", 1, {8}, 8, true))
+    self.sp:add(Anim:new("idle-right", 1, {14}, 8, true))
 
     -- walk
     self.sp:add(Anim:new("walk-down", 1, {1, 3}, 8, true))
-    self.sp:add(Anim:new("walk-up", 1, {37, 39}, 8, true))
-    self.sp:add(Anim:new("walk-left", 1, {13, 15}, 8, true))
-    self.sp:add(Anim:new("walk-right", 1, {25, 27}, 8, true))
+    self.sp:add(Anim:new("walk-up", 1, {19, 21}, 8, true))
+    self.sp:add(Anim:new("walk-left", 1, {7, 9}, 8, true))
+    self.sp:add(Anim:new("walk-right", 1, {13, 15}, 8, true))
 
     self.dir = 2
 end
