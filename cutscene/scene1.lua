@@ -1,7 +1,7 @@
 return {
     {
         "dialogue", 
-        {"Hello World!, my name is Allan", "This is a cutscene with dialogue!!!!!!"}
+        {"Hello World!, my name is ATS", "This is a cutscene with dialogue!!!!!!"}
     },
     {
         "show_image",
