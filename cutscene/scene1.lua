@@ -1,7 +1,7 @@
 return {
     {
         "dialogue", 
-        "Hello World!, my name is Allan"
+        "Hello World!, my name is ATS"
     },
     {
         "dialogue", 
