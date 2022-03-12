@@ -6,7 +6,7 @@ function Textbox:add(text)
     self.dialog_i = 1
 end
 
-function Textbox:on_complete()
+function Textbox:on_complete() -- function for "Evt" function
 end
 
 function Textbox:update(dt)
@@ -17,7 +17,7 @@ function Textbox:update(dt)
         end
     else
         self.on_complete()
-    end 
+    end
 end
 
 function Textbox:draw()

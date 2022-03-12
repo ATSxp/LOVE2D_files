@@ -4,7 +4,7 @@ function stateManager()
 	s.state_overlay = {}
 	s.active_state = ""
 	
-	function s.active(name)
+	function s.active(name) -- function called when a scene starts
 		s.active_state = name
 		s.states[name].on_active()
 	end
@@ -14,14 +14,14 @@ function stateManager()
 		s.states[name] = e
 	end
 	
-	function s.pop()
+	function s.pop() -- delete the first index from the table, as in Javascript "shift" function
 		table.remove(s.state_overlay,1)
 		if #s.state_overlay > 1 then
 			s.state[1].on_active()
 		end
 	end
 	
-	function s.push(e)
+	function s.push(e) -- add an item to the first index of the table
 		s.mgr = s
 		table.insert(s.state_overlay,1,e)
 		e.on_active()

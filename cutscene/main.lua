@@ -1,3 +1,5 @@
+-- references: Everdawn, game made on the TIC-80
+--  link: https://tic80.com/play?cart=615
 require("state")
 require("timer")
 Textbox = require("textbox")
@@ -24,16 +26,12 @@ end
 
 function love.keypressed(key, scancode, isrepeat)
     Textbox:keypressed(key)
-    if key == "x" then
-        Sq(require("scene1"))
-    end
-
 end
 
 function Game()
     local s = {}
     function s.on_active()
-        -- Sq(require("scene1"))
+        Sq(require("scene1"))
     end
 
     function s:update(dt)

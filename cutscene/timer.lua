@@ -4,7 +4,7 @@ function Timer(duration)
 	s.duration = duration
 
 	s.complete = function()
-		return love.timer.getTime() - s.time > s.duration
+		return love.timer.getTime() - s.time > s.duration -- wow math
 	end
 	
 	s.fraction=function()
