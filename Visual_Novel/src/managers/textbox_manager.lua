@@ -6,7 +6,7 @@ function Textbox:addDialogue(dialogue, data)
     self.data = data or {}
 end
 
-function Textbox:onComplete() -- function for "Evt" function
+function Textbox:onComplete() -- for "Evt" function
 end
 
 function Textbox:load()
@@ -31,15 +31,30 @@ function Textbox:draw()
         local len = string.len(str)
 
         if self.dialogues_i <= #self.dialogues then
+            love.graphics.setColor(0, 0, 0, 0.5)
+            love.graphics.rectangle("fill", 0, 0, SCREEN_W, SCREEN_H)
+            love.graphics.setColor(0, 0, 0, 1)
+            love.graphics.rectangle("fill", 5, SCREEN_H / 2, SCREEN_W - 10, SCREEN_H / 2 - 10)
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.rectangle("line", 5, SCREEN_H / 2, SCREEN_W - 10, SCREEN_H / 2 - 10)
             
             -- icon
             if self.data.img ~= nil then
                 love.graphics.draw(
                     self.data.img, 
-                    6, 111, 0, 
-                    127 /self.data.img:getWidth(), 127 /self.data.img:getHeight())
-                love.graphics.rectangle("line", 5, 110, 128, 128)
+                    6, 51, 0, 
+                    (127 * 1.5) /self.data.img:getWidth(), (127 * 1.5) /self.data.img:getHeight())
+                love.graphics.rectangle("line", 5, 50, 128 * 1.5, 128 * 1.5)
+            end
+
+            -- name
+            if self.data.name ~= nil then
+                local font = love.graphics.newFont()
+                love.graphics.print(self.data.name, (128 * 1.5) + 19, 51 * 4.4)
+                love.graphics.rectangle(
+                    "line", 
+                    (128 * 1.5) + 12, 51 * 4.3, 
+                    font:getWidth(self.data.name) + 13, 24)
             end
 
             -- text
@@ -54,7 +69,7 @@ function Textbox:keypressed(key, scancode,isrepeat)
         local str = self.dialogues[self.dialogues_i]
         local len = string.len(str)
 
-        if key == "z" and self.text_i >= 6 then
+        if key == "z" and self.text_i >= 2 then
             if self.text_i < len then
                 self.text_i = len
             else

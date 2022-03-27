@@ -4,15 +4,16 @@ function Events:load()
         ["intro"] = {
             {
                 "dialogue", 
-                {"Ola, bem vindo ao meu jogo", "Ass: Criador"},
-                {img = gImages.neko_icon,}
+                {"Neste Momento, irei lhe apresentar um personagem"},
+                {img = gImages.neko_icon,
+                name = "Creator"}
 
             }, 
             {
                 "dialogue", 
-                {"Bom dia", "cumpadi", "parceiro"},
-                {img = gImages.char_icon,}
-
+                {"Oi", "eu to com fome.", "Poderia me dar algo para comer?"},
+                {img = gImages.luffy_barrigudo,
+                name = "João Victor"}
             }
         },
         
