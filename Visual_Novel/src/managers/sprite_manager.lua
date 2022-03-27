@@ -15,12 +15,15 @@ function Sprite:new(anim)
     end
 
     function s:update(dt)
-        self.anim[self.cur_anim]:update(dt)
+        self.anims[self.cur_anim]:update(dt)
     end
 
     function s:draw(e)
-        local anim = self.anims[self.cur_anim]
-        love.graphics.draw(anim.texture, anim.cur_frame, e.x, e.y)
+        local cur = self.cur_anim
+        local anims = self.anims[cur]
+        love.graphics.draw(gImages[cur], gFrames[cur][anims.cur_frame], 
+        e.x, e.y, 0,
+        e.w / gImages[cur]:getWidth(), e.h / gImages[cur]:getHeight())
     end
     return s
 end

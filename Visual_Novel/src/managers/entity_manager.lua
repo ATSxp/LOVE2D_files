@@ -5,8 +5,8 @@ function Entity:new(x, y, sp)
     s.name = ""
     s.x = x or 0
     s.y = y or 0
-    s.w = 32
-    s.h = 32
+    s.w = 64
+    s.h = 64
     s.dx = 0
     s.dy = 0
     s.sp = Sprite:new(sp)

@@ -1,19 +1,22 @@
 -- All requires --
 
-local newImg = love.graphics.newImage
-gImages = {
-    ["neko_icon"] = newImg("assets/characters/icon_discord.jpg"),
-    ["char_icon"] = newImg("assets/characters/judgment.png"),
-    ["luffy_barrigudo"] = newImg("assets/characters/luffy_barrigudo.png")
-}
-
-gFrames = {
-
-}
-
 require("src/constants")
 require("src/utils")
 Events = require("src/events")
+
+love.graphics.setDefaultFilter("nearest", "nearest")
+local newImg = love.graphics.newImage
+gImages = {
+    ["neko_icon"] = newImg("assets/icons/icon_discord.png"),
+    ["char_icon"] = newImg("assets/icons/judgment.png"),
+    ["luffy_barrigudo_icon"] = newImg("assets/icons/luffy_barrigudo.png"),
+    ["joao_icon"] = newImg("assets/icons/joao.png"),
+    ["joao_sprite"] = newImg("assets/sprites/joao_asanhado.png"),
+}
+
+gFrames = {
+    ["joao_sprite"] = createQuads(gImages.joao_sprite, 828 / 2, 828 / 2),
+}
 
 Anim = require("src/managers/anim_manager")
 Sprite = require("src/managers/sprite_manager")

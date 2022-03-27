@@ -1,4 +1,3 @@
-love.graphics.setDefaultFilter("nearest", "nearest")
 require("requires")
 
 function love.load()

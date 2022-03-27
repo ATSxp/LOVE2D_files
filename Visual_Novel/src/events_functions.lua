@@ -1,3 +1,4 @@
+-- Functions only used for cutscenes
 function evtPrint(text, x, y, duration,complete)
    local s = Evt()
    s.timer = Timer:new(duration)

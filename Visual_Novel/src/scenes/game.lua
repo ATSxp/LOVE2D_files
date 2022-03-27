@@ -1,7 +1,8 @@
 local Game = {}
 function Game:load()
-    local scenes = Events:load()
-    Sq:new(scenes.intro)
+    -- local scenes = Events:load()
+    -- Sq:new(scenes.intro)
+    
     Player:load()
 end
 

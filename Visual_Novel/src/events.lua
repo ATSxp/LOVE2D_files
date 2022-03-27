@@ -1,3 +1,4 @@
+-- This is where all the game's cutscenes or events will be
 local Events = {}
 function Events:load()
     local scenes = {
@@ -12,7 +13,7 @@ function Events:load()
             {
                 "dialogue", 
                 {"Oi", "eu to com fome.", "Poderia me dar algo para comer?"},
-                {img = gImages.luffy_barrigudo,
+                {img = gImages.joao_icon,
                 name = "João Victor"}
             }
         },

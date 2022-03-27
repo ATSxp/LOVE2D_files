@@ -1,5 +1,8 @@
 
-function createQuadsd(img, sprite_w, sprite_h)
+-- This function has the objective of taking an image and dividing 
+-- it into several numbered quads in a table, making life MUCH easier 
+-- for the developer who doesn't want to do it one by one
+function createQuads(img, sprite_w, sprite_h)
     local W, H = img:getWidth() / sprite_w, img:getHeight() / sprite_h
     local spritesheet = {}
     local sprite_counter = 0
@@ -18,7 +21,7 @@ function createQuadsd(img, sprite_w, sprite_h)
     return spritesheet
 end
 
--- for entities
+-- check collision for entities
 function AABB(v, e)
     if v ~= e and 
     v.x + v.w >= e.x and 
@@ -29,7 +32,7 @@ function AABB(v, e)
     end
 end
 
--- for NOT entities
+-- check collision for NOT entities
 function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2)
     return x1 + w1 >= x2 and
     x2 + w2 >= x1 and
@@ -37,7 +40,7 @@ function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2)
     y2 + h2 >= y1
 end
 
--- for NOT entities
+-- check collision for NOT entities, but without "="  \_('_')_/
 function checkCollision2(x1, y1, w1, h1, x2, y2, w2, h2)
     return x1 + w1 > x2 and
     x2 + w2 > x1 and
