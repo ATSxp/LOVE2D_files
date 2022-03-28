@@ -18,6 +18,7 @@ gFrames = {
     ["joao_sprite"] = createQuads(gImages.joao_sprite, 828 / 2, 828 / 2),
 }
 
+wf = require("libs/windfield")
 Anim = require("src/managers/anim_manager")
 Sprite = require("src/managers/sprite_manager")
 Scene = require("src/managers/scene_manager")

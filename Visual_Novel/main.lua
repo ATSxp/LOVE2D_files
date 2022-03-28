@@ -1,5 +1,4 @@
 require("requires")
-
 function love.load()
     tick = 0
     Scene:set("menu")

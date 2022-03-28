@@ -17,8 +17,7 @@ function createQuads(img, sprite_w, sprite_h)
             sprite_counter = sprite_counter + 1
         end
     end
-    
-    return spritesheet
+    return {spritesheet,{w = sprite_w, h = sprite_h}}
 end
 
 -- check collision for entities

@@ -1,31 +1,28 @@
-local Player = Entity:new(0, 0, Anim:new("joao_sprite", {1}))
+local Player = Entity:new(100, 0, Anim:new("joao_sprite", {1}))
 function Player:load()
-    self.w, self.h = 64, 64
     self.sp:set("joao_sprite")
+    self.collider = World:newBSGRectangleCollider(self.x, self.y, self.w, self.h, 10)
+    self.collider:setFixedRotation(true)
 end
 
 function Player:update(dt)
     self.sp:update(dt)
     local key = love.keyboard.isDown
-    self.vx, self.vy = 0, 0
+    self.dx, self.dy = 0, 0
+    self:fixAxis()
+
     if key("up")then
-        self.vy = - 100
+        self.dy = - self.speed
     elseif key("down")then
-        self.vy = 100
+        self.dy = self.speed
     end
 
     if key("left")then
-        self.vx = - 100
+        self.dx = - self.speed
     elseif key("right")then
-        self.vx = 100
+        self.dx = self.speed
     end
 
-    self.x = self.x + self.vx * dt
-    self.y = self.y + self.vy * dt
+    self:setCollision()
 end
-
--- function Player:draw()
---     local img = gImages.joao_sprite
---     love.graphics.draw(img, self.x, self.y, 0, self.w / img:getWidth(), self.h / img:getHeight())
--- end
 return Player
