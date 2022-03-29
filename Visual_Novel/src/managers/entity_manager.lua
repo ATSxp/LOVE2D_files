@@ -10,8 +10,30 @@ function Entity:new(x, y, sp)
     s.dx = 0
     s.dy = 0
     s.speed = 100
+    s.dir = 2
     s.sp = Sprite:new(sp)
     s.collider = {}
+
+    function s:anim()
+        if self.dy < 0 then -- up
+            self.dir = 1
+        elseif self.dy > 0 then -- up
+            self.dir = 2
+        elseif self.dx < 0 then -- up
+            self.dir = 3
+        elseif self.dx > 0 then -- up
+            self.dir = 4
+        end
+    
+        local idle = {"idle_up", "idle_down", "idle_left", "idle_right"}
+        local walk = {"walk_up", "walk_down", "walk_left", "walk_right"}
+    
+        if self.dx ~= 0 or self.dy ~= 0 then
+            self.sp:set(walk[self.dir])
+        elseif self.dx == 0 or self.dy == 0 then
+            self.sp:set(idle[self.dir])
+        end
+    end
 
     function s:fixAxis()
         self.x = self.x - self.w / 2
@@ -24,7 +46,12 @@ function Entity:new(x, y, sp)
         self.collider:setLinearVelocity(self.dx, self.dy)
     end
 
-    function s:load()end
+    function s:load()
+        self.collider = World:newBSGRectangleCollider(
+            self.x, self.y, 
+            self.w, self.h, 
+            10)
+    end
     
     function s:update(dt)
         if self.sp ~= nil then
@@ -45,6 +72,7 @@ function Entity:new(x, y, sp)
     end
 
     function s:UI()end
+    table.insert(entities, s)
     return s
 end
 return Entity

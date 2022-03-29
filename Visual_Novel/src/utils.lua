@@ -58,3 +58,21 @@ function Evt()
     function s:draw()end
     return s
 end
+
+function loadEntities()
+    for i,v in ipairs(entities)do
+        v:load()
+    end
+end
+
+function drawEntities()
+    for i,v in ipairs(entities)do
+        v:draw()
+    end
+end
+
+function updateEntities(dt)
+    for i,v in ipairs(entities)do
+        v:update(dt)
+    end
+end

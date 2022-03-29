@@ -11,13 +11,16 @@ gImages = {
     ["char_icon"] = newImg("assets/icons/judgment.png"),
     ["luffy_barrigudo_icon"] = newImg("assets/icons/luffy_barrigudo.png"),
     ["joao_icon"] = newImg("assets/icons/joao.png"),
-    ["joao_sprite"] = newImg("assets/sprites/joao_asanhado.png"),
+    ["joao_spritesheet"] = newImg("assets/sprites/joao_spritesheet.png"),
+    ["dummy"] = newImg("assets/sprites/dummy.png")
 }
 
 gFrames = {
-    ["joao_sprite"] = createQuads(gImages.joao_sprite, 828 / 2, 828 / 2),
+    ["joao_spritesheet"] = createQuads(gImages.joao_spritesheet, 16, 16),
+    ["dummy"] = createQuads(gImages.dummy, 16, 16),
 }
 
+sti = require("libs/sti")
 wf = require("libs/windfield")
 Anim = require("src/managers/anim_manager")
 Sprite = require("src/managers/sprite_manager")
@@ -32,4 +35,5 @@ Sq = require("src/managers/cutscene_manager")
 Scene:add("src/scenes/menu", "menu")
 Scene:add("src/scenes/game", "game")
 
+require("src/require_entities")
 Player = require("src/entities/player")

@@ -1,8 +1,9 @@
 local Anim = {}
-function Anim:new(name, frames, speed, loop)
+function Anim:new(name, texture, frames, speed, loop)
     local s = {}
     s.name = name
     s.frames = frames or {}
+    s.texture = texture
     s.speed = speed or 8
     s.loop = loop or true
     s.cur_frame = 0

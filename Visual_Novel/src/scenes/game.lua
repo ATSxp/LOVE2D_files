@@ -3,18 +3,20 @@ function Game:load()
     -- local scenes = Events:load()
     -- Sq:new(scenes.intro)
     World = wf.newWorld(0, 0)
-    Player:load()
-    -- wall = World:newRectangleCollider(0, 300, 64, 64)
-    -- wall:setType("static")
+    loadEntities()
+    dummy = Dummy:new(0, 0)
+    dummy:load()
 end
 
 function Game:update(dt)
     World:update(dt)
-    Player:update(dt)
+    updateEntities(dt)
+    dummy:update(dt)
 end
 
 function Game:draw()
-    Player:draw()
+    drawEntities()
     World:draw()
+    dummy:draw()
 end
 return Game
