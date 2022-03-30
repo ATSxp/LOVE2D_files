@@ -17,6 +17,7 @@ function Textbox:update(dt)
         local str = self.dialogues[self.dialogues_i]
         local len = string.len(str)
 
+        global_pause = 1
         if self.text_i < len and tick % 2 == 0 then
             self.text_i = self.text_i + 1
         end
@@ -50,6 +51,12 @@ function Textbox:draw()
             -- name
             if self.data.name ~= nil then
                 local font = love.graphics.newFont()
+                love.graphics.setColor(0, 0, 0, 0.5)
+                love.graphics.rectangle(
+                    "fill", 
+                    (128 * 1.5) + 12, 51 * 4.3, 
+                    font:getWidth(self.data.name) + 13, 24)
+                love.graphics.setColor(1, 1, 1, 1)
                 love.graphics.print(self.data.name, (128 * 1.5) + 19, 51 * 4.4)
                 love.graphics.rectangle(
                     "line", 

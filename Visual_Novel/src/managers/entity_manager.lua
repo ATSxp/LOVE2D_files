@@ -72,7 +72,6 @@ function Entity:new(x, y, sp)
     end
 
     function s:UI()end
-    table.insert(entities, s)
     return s
 end
 return Entity

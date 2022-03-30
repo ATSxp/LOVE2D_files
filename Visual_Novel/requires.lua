@@ -1,5 +1,4 @@
 -- All requires --
-
 require("src/constants")
 require("src/utils")
 Events = require("src/events")
@@ -20,6 +19,7 @@ gFrames = {
     ["dummy"] = createQuads(gImages.dummy, 16, 16),
 }
 
+Debug = require("debug_mode")
 sti = require("libs/sti")
 wf = require("libs/windfield")
 Anim = require("src/managers/anim_manager")
@@ -29,11 +29,12 @@ Timer = require("src/managers/timer_manager")
 Textbox = require("src/managers/textbox_manager")
 Button = require("src/managers/button_manager")
 Entity = require("src/managers/entity_manager")
+Npc = require("src/managers/npc_manager")
 require("src/events_functions")
 Sq = require("src/managers/cutscene_manager")
 
 Scene:add("src/scenes/menu", "menu")
 Scene:add("src/scenes/game", "game")
 
-require("src/require_entities")
+Dummy = require("src/entities/dummy")
 Player = require("src/entities/player")

@@ -11,9 +11,10 @@ function Player:load()
 
     self.collider = World:newBSGRectangleCollider(
         self.x, self.y, 
-        self.w, self.h, 
+        self.w, self.h,
         10)
     self.collider:setFixedRotation(true)
+    self.speed = 200
 end
 
 function Player:update(dt)
@@ -24,17 +25,28 @@ function Player:update(dt)
 
     if key("up")then
         self.dy = - self.speed
+        self.dx = 0
     elseif key("down")then
         self.dy = self.speed
+        self.dx = 0
     end
 
     if key("left")then
         self.dx = - self.speed
+        self.dy = 0
     elseif key("right")then
         self.dx = self.speed
+        self.dy = 0
     end
 
     self:anim()
     self:setCollision()
 end
+
+function Player:keypressed(key, scancode, isrepeat)
+    if key == "z" and global_pause <= 0 then        
+        interactEntities(self)
+    end
+end
+table.insert(entities, Player)
 return Player

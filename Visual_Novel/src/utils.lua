@@ -60,19 +60,52 @@ function Evt()
 end
 
 function loadEntities()
-    for i,v in ipairs(entities)do
+    for i,v in pairs(entities)do
         v:load()
     end
 end
 
+function updateEntities(dt)
+    for i,v in pairs(entities)do
+        v:update(dt)
+    end
+end
+
 function drawEntities()
-    for i,v in ipairs(entities)do
+    for i,v in pairs(entities)do
         v:draw()
     end
 end
 
-function updateEntities(dt)
-    for i,v in ipairs(entities)do
-        v:update(dt)
+function spawnEntities()
+    spawnents = {
+        ["dummy"] = Npc:new(
+            {name = "dummy", img = gImages.neko_icon}, 
+            {{"Ola, como voce vai?", "espero que bem"}},
+            "npc", Anim:new("test", "dummy", {1})),
+    }
+    
+    local ent
+    for i,v in pairs(Map.layers.entities.objects)do
+        local spawn = spawnents[v.name]
+        if spawn ~= nil then
+            ent = spawn:new(v.x * 4, v.y * 4)
+            table.insert(entities, ent)
+        end
+    end
+end
+
+function layerEntities(a, b)
+    if a.y == b.y then
+        return a.x > b.x
+    end
+    return a.y > b.y
+end
+
+function interactEntities(e)
+    for i,v in pairs(entities)do
+        if AABB(e, v) and v.onInteract ~= nil then
+            v:onInteract()
+        end
     end
 end
