@@ -18,9 +18,12 @@ end
 
 function Debug:draw()
     if not self.on then return end
+    cam:attach()
     if World then
+        love.graphics.scale(64 / 16, 64 / 16)
         World:draw()
     end
+    cam:detach()
 
     if not self.text then return end
     local x, y = 0, 0

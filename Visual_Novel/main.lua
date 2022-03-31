@@ -4,7 +4,6 @@ function love.load()
     tick = 0
     Scene:set("menu")
     Scene:load()
-    Textbox:load()
 end
 
 function love.update(dt)

@@ -2,11 +2,17 @@ local Cutscener = {}
 local events = {
     {
         t = "print", 
-        fn = function(s, e, complete)return evtPrint(e[2], e[3], e[4], e[5] ,complete)end,
+        fn = function(s, e, complete)
+            return evtPrint(e[2], e[3], e[4], e[5] ,complete)
+        end,
     },
     {
-        t = "nil", 
-        fn = function(s, e, complete)return end,
+        t = "dialogue", 
+        fn = function(s, e, complete)
+            local d = Textbox
+            d:addDialogue(e[2], e[3])
+            d.onComplete = complete
+        end,
     },
 }
 
@@ -33,10 +39,6 @@ function Cutscener:new(script, nostart)
         for i, v in ipairs(events)do
             if t == v.t then
                 evt = v:fn(e, s.popScript)
-            elseif t == "dialogue" then
-                local d = Textbox
-                d:addDialogue(e[2], e[3])
-                d.onComplete = s.popScript
             end
         end
 

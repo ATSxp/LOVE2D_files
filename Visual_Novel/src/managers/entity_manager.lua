@@ -5,14 +5,16 @@ function Entity:new(x, y, sp)
     s.name = ""
     s.x = x or 0
     s.y = y or 0
-    s.w = 64
-    s.h = 64
+    s.w = 16
+    s.h = 16
     s.dx = 0
     s.dy = 0
-    s.speed = 100
+    s.speed = 30
     s.dir = 2
     s.sp = Sprite:new(sp)
     s.collider = {}
+    s.extraX = 0
+    s.extraY = 0
 
     function s:anim()
         if self.dy < 0 then -- up
@@ -41,16 +43,16 @@ function Entity:new(x, y, sp)
     end
 
     function s:setCollision()
-        self.x = self.collider:getX()
-        self.y = self.collider:getY()
+        self.x = self.collider:getX() + self.extraX
+        self.y = self.collider:getY() + self.extraY
         self.collider:setLinearVelocity(self.dx, self.dy)
     end
 
     function s:load()
         self.collider = World:newBSGRectangleCollider(
             self.x, self.y, 
-            self.w, self.h, 
-            10)
+            self.w, self.h,
+            3)
     end
     
     function s:update(dt)

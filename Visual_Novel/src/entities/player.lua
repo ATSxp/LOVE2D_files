@@ -1,5 +1,8 @@
-local Player = Entity:new(100, 0, Anim:new("idle_down", "joao_spritesheet", {1}))
+local Player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
 function Player:load()
+    self.w = 11
+    self.extraX = - 3
+    
     self.sp:add(Anim:new("idle_up", "joao_spritesheet", {10}))
     self.sp:add(Anim:new("idle_left", "joao_spritesheet", {4}))
     self.sp:add(Anim:new("idle_right", "joao_spritesheet", {7}))
@@ -10,11 +13,11 @@ function Player:load()
     self.sp:add(Anim:new("walk_right", "joao_spritesheet", {6, 8}))
 
     self.collider = World:newBSGRectangleCollider(
-        self.x, self.y, 
+        self.x, self.y,
         self.w, self.h,
-        10)
+        3)
     self.collider:setFixedRotation(true)
-    self.speed = 200
+    self.speed = 60
 end
 
 function Player:update(dt)

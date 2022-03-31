@@ -22,8 +22,7 @@ function Sprite:new(anim)
         local cur = self.cur_anim
         local anims = self.anims[cur]
         love.graphics.draw(gImages[anims.texture], gFrames[anims.texture][1][anims.cur_frame], 
-        e.x - e.w / 2, e.y - e.h / 2, 0,
-        e.w / gFrames[anims.texture][2].w, e.h / gFrames[anims.texture][2].h)
+        e.x - e.w / 2, e.y - e.h / 2)
     end
     return s
 end

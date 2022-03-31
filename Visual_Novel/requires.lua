@@ -4,6 +4,8 @@ require("src/utils")
 Events = require("src/events")
 
 love.graphics.setDefaultFilter("nearest", "nearest")
+Font = love.graphics.newFont("assets/PublicPixel.ttf")
+love.graphics.setFont(Font)
 local newImg = love.graphics.newImage
 gImages = {
     ["neko_icon"] = newImg("assets/icons/icon_discord.png"),
@@ -11,15 +13,19 @@ gImages = {
     ["luffy_barrigudo_icon"] = newImg("assets/icons/luffy_barrigudo.png"),
     ["joao_icon"] = newImg("assets/icons/joao.png"),
     ["joao_spritesheet"] = newImg("assets/sprites/joao_spritesheet.png"),
-    ["dummy"] = newImg("assets/sprites/dummy.png")
+    ["dummy"] = newImg("assets/sprites/dummy.png"),
+    ["ballon_over_npc"] = newImg("assets/sprites/ballon.png"),
+    ["button_menu"] = newImg("assets/sprites/button.png"),
 }
 
 gFrames = {
     ["joao_spritesheet"] = createQuads(gImages.joao_spritesheet, 16, 16),
     ["dummy"] = createQuads(gImages.dummy, 16, 16),
+    ["ballon_over_npc"] = createQuads(gImages.ballon_over_npc, 8, 8),
 }
 
 Debug = require("debug_mode")
+Camera = require("libs/camera")
 sti = require("libs/sti")
 wf = require("libs/windfield")
 Anim = require("src/managers/anim_manager")

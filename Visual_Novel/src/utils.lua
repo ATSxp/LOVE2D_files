@@ -78,18 +78,13 @@ function drawEntities()
 end
 
 function spawnEntities()
-    spawnents = {
-        ["dummy"] = Npc:new(
-            {name = "dummy", img = gImages.neko_icon}, 
-            {{"Ola, como voce vai?", "espero que bem"}},
-            "npc", Anim:new("test", "dummy", {1})),
-    }
+    spawnents = require("src/entities/entities_data")
     
     local ent
     for i,v in pairs(Map.layers.entities.objects)do
         local spawn = spawnents[v.name]
         if spawn ~= nil then
-            ent = spawn:new(v.x * 4, v.y * 4)
+            ent = spawn:new(v.x, v.y)
             table.insert(entities, ent)
         end
     end
@@ -104,8 +99,42 @@ end
 
 function interactEntities(e)
     for i,v in pairs(entities)do
-        if AABB(e, v) and v.onInteract ~= nil then
+        local hit = checkCollision(e.x, e.y, e.w, e.h, v.x, v.y, v.w + 4, v.h)
+        if hit and v.onInteract ~= nil then
             v:onInteract()
         end
     end
+end
+
+function cameraHideOffSet()
+    local mapW = Map.width * Map.tilewidth
+    local mapH = Map.height * Map.tilewidth
+
+    if cam.y > (mapH - SCREEN_H / 2) then
+        cam.y = (mapH - SCREEN_H / 2)
+    end
+    if cam.x > (mapW - SCREEN_W / 2) then
+        cam.x = (mapW - SCREEN_W / 2)
+    end
+
+    if cam.y < SCREEN_H / 2 then
+        cam.y = SCREEN_H / 2
+    end
+    if cam.x < SCREEN_W / 2 then
+        cam.x = SCREEN_W / 2
+    end
+end
+
+function Loading(duration)
+    local s = {}
+    local timer = Timer:new(duration)
+    
+    function s:draw()
+        if not timer:complete()then
+            global_pause = 1
+            love.graphics.clear()
+            love.graphics.print("Loading...", 0, 500 - Font:getHeight("Loading..."))
+        end
+    end
+    return s
 end

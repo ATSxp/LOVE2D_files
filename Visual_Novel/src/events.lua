@@ -5,16 +5,20 @@ function Events:load()
         ["intro"] = {
             {
                 "dialogue", 
-                {"Neste Momento, irei lhe apresentar um personagem"},
-                {img = gImages.neko_icon,
-                name = "Creator"}
+                {"*Comendo hotdog*"},
+                {
+                    img = gImages.neko_icon,
+                    name = "Creator"
+                }
 
             }, 
             {
                 "dialogue", 
-                {"Oi", "eu to com fome.", "Poderia me dar algo para comer?"},
-                {img = gImages.joao_icon,
-                name = "João Victor"}
+                {"O-oi...", "eu to com um tiquinho de fome.", "Poderia me dar algo?"},
+                {
+                    img = gImages.joao_icon,
+                    name = "João Victor"
+                }
             }
         },
         
