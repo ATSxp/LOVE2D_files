@@ -27,14 +27,13 @@ function Debug:draw()
 
     if not self.text then return end
     local x, y = 0, 0
-    local font = love.graphics.newFont()
     for i,v in ipairs(self.items)do
         love.graphics.setColor(0, 0, 0, 0.7)
-        love.graphics.rectangle("fill", x, y, font:getWidth(v.name..": "..v.val), font:getHeight(v.name..": "..v.val))
+        love.graphics.rectangle("fill", x, y, Font:getWidth(v.name..": "..v.val), Font:getHeight(v.name..": "..v.val))
         love.graphics.setColor(1, 1, 1, 1)
         love.graphics.print(v.name..": "..v.val, x, y)
-        y = y + font:getHeight(v.name..": "..v.val)
-        if  y + font:getHeight(v.name..": "..v.val) > 500 then
+        y = y + Font:getHeight(v.name..": "..v.val)
+        if  y + Font:getHeight(v.name..": "..v.val) > 500 then
             x = x + 40
             y = 0
         end

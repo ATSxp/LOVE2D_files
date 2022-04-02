@@ -6,7 +6,6 @@ function Dummy:new(x, y)
         self.collider:setFixedRotation(true)
         self.collider:setType("static")
     end
-
     -- function s:update(dt)
     --     if self.sp ~= nil then
     --         self.sp:update(dt)

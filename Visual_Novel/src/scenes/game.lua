@@ -5,53 +5,40 @@ function Game:load()
     Debug:load()
     
     cam = Camera()
-    
-    Map = sti("maps/room1.lua")
     World = wf.newWorld(0, 0)
-    
-    spawnEntities()
-    loadEntities()
+    changeMap("room1")
 
-    self:solid()
+    loadEntities()
 
     table.sort(entities, layerEntities)
 
-    load = Loading(5)
 end
 
 function Game:update(dt)
+    Debug:update(dt)
     if global_pause > 0 then
         global_pause = global_pause - 1
     else
-        Debug:update(dt)
-        cam:lookAt(Player.x * 4, Player.y * 4)
         World:update(dt)
-        Map:update(dt)
+        mapdata.map:update(dt)
         updateEntities(dt)
     end
+
+    cam:lookAt(Player.x * 4, Player.y * 4)
     cameraHideOffSet()
+    
+    if love.keyboard.isDown("g")then
+        changeMap("room2")
+    end
 end
 
 function Game:draw()
     cam:attach()
         love.graphics.scale(64 / 16, 64 / 16)
-        Map:drawLayer(Map.layers.floor)
-        Map:drawLayer(Map.layers.walls)
+        mapdata.map:drawLayer(mapdata.map.layers.floor)
+        mapdata.map:drawLayer(mapdata.map.layers.walls)
         drawEntities()
     cam:detach()
     Debug:draw()
-    load:draw()
-end
-
-function Game:solid()
-    solids = {}
-    if Map.layers.solids then
-        Map.layers.solids.visible = false
-        for i,v in pairs(Map.layers.solids.objects)do
-            local solid = World:newRectangleCollider(v.x, v.y, v.width, v.height)
-            solid:setType("static")
-            table.insert(solids, solid)
-        end
-    end
 end
 return Game

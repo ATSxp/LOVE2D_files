@@ -60,32 +60,41 @@ function Evt()
 end
 
 function loadEntities()
-    for i,v in pairs(entities)do
-        v:load()
+    if entities then
+        for i,v in pairs(entities)do
+            v:load()
+        end
     end
 end
 
 function updateEntities(dt)
-    for i,v in pairs(entities)do
-        v:update(dt)
+    if entities then
+        for i,v in pairs(entities)do
+            v:update(dt)
+        end
     end
 end
 
 function drawEntities()
-    for i,v in pairs(entities)do
-        v:draw()
+    if entities then
+        for i,v in pairs(entities)do
+            v:draw()
+        end
     end
 end
 
 function spawnEntities()
-    spawnents = require("src/entities/entities_data")
-    
-    local ent
-    for i,v in pairs(Map.layers.entities.objects)do
-        local spawn = spawnents[v.name]
-        if spawn ~= nil then
-            ent = spawn:new(v.x, v.y)
-            table.insert(entities, ent)
+    if mapdata.map.layers.entities then
+        spawnents = require("src/entities/entities_data")
+        local ent
+        for i,v in ipairs(mapdata.map.layers.entities.objects)do
+            local spawn = spawnents[v.name]
+            if spawn ~= nil then
+                ent = spawn:new(v.x, v.y)
+                ent.name = v.name
+                ent.type = v.type
+                table.insert(entities, ent)
+            end
         end
     end
 end
@@ -107,21 +116,21 @@ function interactEntities(e)
 end
 
 function cameraHideOffSet()
-    local mapW = Map.width * Map.tilewidth
-    local mapH = Map.height * Map.tilewidth
-
-    if cam.y > (mapH - SCREEN_H / 2) then
-        cam.y = (mapH - SCREEN_H / 2)
-    end
-    if cam.x > (mapW - SCREEN_W / 2) then
-        cam.x = (mapW - SCREEN_W / 2)
-    end
+    local mapW = mapdata.map.width * mapdata.map.tilewidth
+    local mapH = mapdata.map.height * mapdata.map.tileheight
 
     if cam.y < SCREEN_H / 2 then
         cam.y = SCREEN_H / 2
     end
     if cam.x < SCREEN_W / 2 then
         cam.x = SCREEN_W / 2
+    end
+
+    if cam.y > ((mapH * 4) - SCREEN_H / 2) then
+        cam.y = ((mapH * 4) - SCREEN_H / 2)
+    end
+    if cam.x > ((mapW * 4) - SCREEN_W / 2) then
+        cam.x = ((mapW * 4) - SCREEN_W / 2)
     end
 end
 

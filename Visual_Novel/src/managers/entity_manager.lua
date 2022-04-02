@@ -1,4 +1,4 @@
-local Entity = {}
+Entity = {}
 function Entity:new(x, y, sp)
     local s = {}
     s.type = ""
@@ -12,7 +12,6 @@ function Entity:new(x, y, sp)
     s.speed = 30
     s.dir = 2
     s.sp = Sprite:new(sp)
-    s.collider = {}
     s.extraX = 0
     s.extraY = 0
 
@@ -50,9 +49,9 @@ function Entity:new(x, y, sp)
 
     function s:load()
         self.collider = World:newBSGRectangleCollider(
-            self.x, self.y, 
-            self.w, self.h,
-            3)
+        self.x, self.y, 
+        self.w, self.h,
+        3)
     end
     
     function s:update(dt)

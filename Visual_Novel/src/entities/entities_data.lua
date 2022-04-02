@@ -7,11 +7,27 @@ return {
         {
             {"Va te catar, marreco!"}
         },
-        "npc", Anim:new("down", "dummy", {1}),
+        Anim:new("down", "dummy", {1}),
+        function(self)
+            self.sp:add(Anim:new("up", "dummy", {10}))
+            self.sp:add(Anim:new("left", "dummy", {4}))
+            self.sp:add(Anim:new("right", "dummy", {7}))
+        end
+    ),
+
+    ["dummy2"] = Npc:new(
         {
-            ["up"] = {texture = "dummy", frames = {10}},
-            ["left"] = {texture = "dummy", frames = {4}},
-            ["right"] = {texture = "dummy", frames = {7}},
-        }
+            name = "Josh",
+            img = gImages.luffy_barrigudo_icon,
+        },
+        {
+            {"Ola!", "Nao ligue para aquele cara, ele e rancoroso"}
+        },
+        Anim:new("up", "dummy", {10}),
+        function(self)
+            self.sp:add(Anim:new("down", "dummy", {1}))
+            self.sp:add(Anim:new("left", "dummy", {4}))
+            self.sp:add(Anim:new("right", "dummy", {7}))
+        end
     ),
 }

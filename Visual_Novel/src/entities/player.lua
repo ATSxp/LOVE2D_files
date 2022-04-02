@@ -1,8 +1,9 @@
-local Player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
+Player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
+
 function Player:load()
     self.w = 11
     self.extraX = - 3
-    
+
     self.sp:add(Anim:new("idle_up", "joao_spritesheet", {10}))
     self.sp:add(Anim:new("idle_left", "joao_spritesheet", {4}))
     self.sp:add(Anim:new("idle_right", "joao_spritesheet", {7}))
