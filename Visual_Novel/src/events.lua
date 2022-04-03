@@ -4,21 +4,26 @@ function loadEvents()
         ["intro"] = {
             {
                 "dialogue", 
-                {"Eae fela da puta, como ce ta?"},
-                {
-                    img = gImages.char_icon,
-                    name = "Roger"
-                }
+                {"Ola senhor"},
+                {img = "neko_icon", name = "Policial"}
 
             }, 
             {
                 "dialogue", 
-                {"O-oi...", "eu to com um tiquinho de fome.", "Poderia me dar algo?"},
-                {
-                    img = gImages.joao_icon,
-                    name = "João Victor"
-                }
-            }
+                {"Bom dia seu guarda, como posso te ajudar?"},
+                {img = "joao_icon", name = "João Victor"}
+            },
+            {
+                "dialogue",
+                {"Gostaria de saber se o senhor viu este rapaz por aqui...", 
+                "*tira uma foto do bolso"},
+                {img = "neko_icon", name = "Policial"}
+            },
+            {
+                "show_image",
+                "negao_teste", 200, 10, nil, 64 * 6, 64 * 6,
+                2
+            },
         },
         
     }

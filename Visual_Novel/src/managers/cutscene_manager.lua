@@ -3,7 +3,7 @@ local events = {
     {
         t = "print", 
         fn = function(s, e, complete)
-            return evtPrint(e[2], e[3], e[4], e[5] ,complete)
+            return evtPrint(e[2], e[3], e[4], e[5], complete)
         end,
     },
     {
@@ -12,6 +12,12 @@ local events = {
             local d = Textbox
             d:addDialogue(e[2], e[3])
             d.onComplete = complete
+        end,
+    },
+    {
+        t = "show_image",
+        fn = function(s, e, complete)
+            return evtShowImage(e[2], e[3], e[4], e[5], e[6], e[7], e[8], complete)
         end,
     },
 }
@@ -30,6 +36,8 @@ function Cutscener:new(script, nostart)
         if #s.script == 0 then
             s:onComplete()
             return
+        else
+            global_pause = 1
         end
 
         local e = table.remove(s.script, 1)
@@ -43,14 +51,14 @@ function Cutscener:new(script, nostart)
         end
 
         if evt then
-            evt.posUpdate = self.update
+            evt.posUpdate = s.update
             evt:launch()
         end
     end
 
     function s:launch()
         s.script = script
-        self:popScript()
+        s:popScript()
     end
 
     if not nostart then

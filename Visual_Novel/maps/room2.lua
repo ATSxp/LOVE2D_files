@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 5,
-  nextobjectid = 6,
+  nextobjectid = 8,
   properties = {},
   tilesets = {
     {
@@ -129,6 +129,19 @@ return {
           type = "npc",
           shape = "rectangle",
           x = 112,
+          y = 32,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 6,
+          name = "negao",
+          type = "divine",
+          shape = "rectangle",
+          x = 160,
           y = 32,
           width = 16,
           height = 16,

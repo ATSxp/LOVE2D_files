@@ -1,7 +1,7 @@
 local Game = {}
 function Game:load()
-    -- loadEvents()
-    -- Sq:new(scenes.intro)
+    loadEvents()
+    Sq:new(scenes.intro)
     Debug:load()
     
     World = wf.newWorld(0, 0)
@@ -31,7 +31,7 @@ end
 
 function Game:draw()
     cam:attach()
-        love.graphics.scale(64 / 16, 64 / 16)
+        love.graphics.scale(scale_game, scale_game)
         mapdata.map:drawLayer(mapdata.map.layers.floor)
         mapdata.map:drawLayer(mapdata.map.layers.walls)
         drawEntities()
@@ -42,5 +42,5 @@ end
 
 function Game:keypressed(key, scancode, isrepeat)
     Player:keypressed(key, scancode, isrepeat)
-end
+end 
 return Game

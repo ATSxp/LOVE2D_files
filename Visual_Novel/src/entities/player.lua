@@ -1,5 +1,4 @@
-local player = {}
-player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
+local player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
 
 function player:load()
     self.type = "hero"
@@ -24,7 +23,7 @@ function player:load()
         self.collider:setCollisionClass("player")
         self.collider:setFixedRotation(true)
     end
-    self.speed = 60
+    self.speed = 80
 end
 
 function player:update(dt)

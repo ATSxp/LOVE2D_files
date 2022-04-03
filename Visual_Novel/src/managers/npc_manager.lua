@@ -3,11 +3,9 @@ function Npc:new(data, dialogue, sp, other_anims)
     local fn = {}
     function fn:new(x, y)
         local s = Entity:new(x, y, sp)
-        s.dialogue_i = 2
         s.over = false
         s.dir = 2
         s.other_anims = other_anims or function()end
-        s.isClose = false
 
         function s:checkDir()
             if Player.y < self.y and Player.dir == 2 then
@@ -25,7 +23,6 @@ function Npc:new(data, dialogue, sp, other_anims)
             end
         end
         
-        ballon_anim = Anim:new("ballon", "ballon_over_npc", {0, 1, 2, 3}, 16)
         function s:load()
             self:other_anims()
             self.extraX = - 4.5
@@ -40,11 +37,7 @@ function Npc:new(data, dialogue, sp, other_anims)
 
         function s:onInteract()
             self:checkDir()
-            self.dialogue_i = (self.dialogue_i % #dialogue) + 1
-            if self.dialogue_i == #dialogue then
-                self.over = true
-            end
-            Textbox:addDialogue(dialogue[self.dialogue_i], data)
+            Textbox:addDialogue(dialogue, data)
         end
 
         local supUpdate = s.update
@@ -55,27 +48,10 @@ function Npc:new(data, dialogue, sp, other_anims)
             self:fixAxis()
     
             self:setCollision()
-            ballon_anim:update(dt)
-    
-            local hit = checkCollision(Player.x, Player.y, Player.w, Player.h, self.x, self.y, self.w + 4, self.h)
-            if hit then
-                self.isClose = true
-            else
-                self.isClose = false
-            end
         end
 
         function s:draw()
             self.sp:draw(self)
-
-            if not self.over then
-                if self.isClose then
-                    love.graphics.draw(
-                        gImages[ballon_anim.texture], 
-                        gFrames[ballon_anim.texture][1][ballon_anim.cur_frame], 
-                        self.x + 4, self.y - self.h - 2)
-                end
-            end
         end
         return s
     end

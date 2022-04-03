@@ -13,14 +13,13 @@ gImages = {
     ["joao_icon"] = newImg("assets/icons/joao.png"),
     ["joao_spritesheet"] = newImg("assets/sprites/joao_spritesheet.png"),
     ["dummy"] = newImg("assets/sprites/dummy.png"),
-    ["ballon_over_npc"] = newImg("assets/sprites/ballon.png"),
     ["button_menu"] = newImg("assets/sprites/button.png"),
+    ["negao_teste"] = newImg("assets/sprites/negao.png"),
 }
 
 gFrames = {
     ["joao_spritesheet"] = createQuads(gImages.joao_spritesheet, 16, 16),
     ["dummy"] = createQuads(gImages.dummy, 16, 16),
-    ["ballon_over_npc"] = createQuads(gImages.ballon_over_npc, 8, 8),
 }
 
 Debug = require("debug_mode")
@@ -37,6 +36,7 @@ Entity = require("src/managers/entity_manager")
 Npc = require("src/managers/npc_manager")
 Sq = require("src/managers/cutscene_manager")
 
+require("src/fade")
 require("src/events_functions")
 require("src/events")
 require("src/collision_class")
@@ -47,6 +47,7 @@ loadMap()
 Scene:add("src/scenes/menu", "menu")
 Scene:add("src/scenes/game", "game")
 
+Negao = require("src/entities/negao")
 Dummy = require("src/entities/dummy")
 Player = require("src/entities/player")
 require("src/managers/camera_manager")

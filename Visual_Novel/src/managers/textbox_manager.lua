@@ -9,16 +9,13 @@ end
 function Textbox:onComplete() -- for "Evt" function
 end
 
-function Textbox:load()
-end
-
-function Textbox:update(dt)
+function Textbox:update(dt, complete)
     if self.dialogues ~= nil and self.dialogues[self.dialogues_i] ~= nil then
         local str = self.dialogues[self.dialogues_i]
         local len = string.len(str)
 
         global_pause = 1
-        if self.text_i < len and tick % 2 == 0 then
+        if self.text_i < len and (tick / 2) % 2 == 0 then
             self.text_i = self.text_i + 1
         end
     else

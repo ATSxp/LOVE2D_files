@@ -51,9 +51,13 @@ function Scene:draw()
 end
 
 function Scene:keypressed(key, scancode, isrepeat)
-    self.states[self.curState]:keypressed(key, scancode, isrepeat)
+    if self.states[self.curState].keypressed then
+        self.states[self.curState]:keypressed(key, scancode, isrepeat)
+    end
     for i, v in  ipairs(self.overlayer)do
-        v:keypressed(key, scancode, isrepeat)
+        if v.keypressed then
+            v:keypressed(key, scancode, isrepeat)
+        end
     end
 end
 return Scene

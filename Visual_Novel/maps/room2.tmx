@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="22" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="6">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="22" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="8">
  <editorsettings>
   <export target="room2.lua" format="lua"/>
  </editorsettings>
@@ -48,6 +48,7 @@
  </layer>
  <objectgroup color="#0000ff" id="3" name="entities">
   <object id="5" name="roger" type="npc" x="112" y="32" width="16" height="16"/>
+  <object id="6" name="negao" type="divine" x="160" y="32" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="transition">
   <object id="4" name="room1" x="0" y="16" width="16" height="16">

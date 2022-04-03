@@ -20,7 +20,7 @@ function Debug:draw()
     if not self.on then return end
     cam:attach()
     if World then
-        love.graphics.scale(64 / 16, 64 / 16)
+        love.graphics.scale(scale_game, scale_game)
         World:draw()
     end
     cam:detach()

@@ -1,5 +1,4 @@
 local Timer = {}
-
 function Timer:new(duration)
     local s = {}
     s.timer = love.timer.getTime()

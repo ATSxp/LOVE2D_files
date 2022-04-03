@@ -4,9 +4,7 @@ return {
             name = "dummy", 
             img = "neko_icon"
         }, 
-        {
-            {"Va te catar, marreco!"}
-        },
+        {"Va te catar, marreco!"},
         Anim:new("down", "dummy", {1}),
         function(self)
             self.sp:add(Anim:new("up", "dummy", {10}))
@@ -20,9 +18,7 @@ return {
             name = "Josh",
             img = "luffy_barrigudo_icon",
         },
-        {
-            {"Ola!", "Nao ligue para aquele cara, ele e rancoroso"}
-        },
+        {"Ola!", "Nao ligue para aquele cara, ele e rancoroso"},
         Anim:new("up", "dummy", {10}),
         function(self)
             self.sp:add(Anim:new("down", "dummy", {1}))
@@ -36,9 +32,7 @@ return {
             name = "Roger",
             img = "joao_icon",
         },
-        {
-            {"Ola amigo"}
-        },
+        {"Ola amigo"},
         Anim:new("left", "dummy", {4}),
         function(self)
             self.sp:add(Anim:new("down", "dummy", {1}))
@@ -46,4 +40,6 @@ return {
             self.sp:add(Anim:new("right", "dummy", {7}))
         end
     ),
+
+    ["negao"] = Negao,
 }
