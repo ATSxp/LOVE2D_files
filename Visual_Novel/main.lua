@@ -20,8 +20,8 @@ end
 function love.keypressed(key, scancode, isrepeat)
     Textbox:keypressed(key, scancode,isrepeat)
     Debug:keypressed(key, scancode, isrepeat)
-    Player:keypressed(key, scancode, isrepeat)
-
+    Scene:keypressed(key, scancode, isrepeat)
+    
     if key == "escape" then
         love.event.quit()
     end

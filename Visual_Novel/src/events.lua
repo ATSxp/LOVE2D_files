@@ -1,14 +1,13 @@
 -- This is where all the game's cutscenes or events will be
-local Events = {}
-function Events:load()
-    local scenes = {
+function loadEvents()
+    scenes = {
         ["intro"] = {
             {
                 "dialogue", 
-                {"*Comendo hotdog*"},
+                {"Eae fela da puta, como ce ta?"},
                 {
-                    img = gImages.neko_icon,
-                    name = "Creator"
+                    img = gImages.char_icon,
+                    name = "Roger"
                 }
 
             }, 
@@ -23,6 +22,4 @@ function Events:load()
         },
         
     }
-    return scenes
 end
-return Events

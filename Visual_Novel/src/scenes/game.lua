@@ -1,17 +1,16 @@
 local Game = {}
 function Game:load()
-    -- local scenes = Events:load()
+    -- loadEvents()
     -- Sq:new(scenes.intro)
     Debug:load()
     
-    cam = Camera()
     World = wf.newWorld(0, 0)
+    getCollisionClass()
+    
     changeMap("room1")
-
+    
+    Player:load()
     loadEntities()
-
-    table.sort(entities, layerEntities)
-
 end
 
 function Game:update(dt)
@@ -22,14 +21,12 @@ function Game:update(dt)
         World:update(dt)
         mapdata.map:update(dt)
         updateEntities(dt)
+        Player:update(dt)
     end
 
-    cam:lookAt(Player.x * 4, Player.y * 4)
+    cam:update(dt)
     cameraHideOffSet()
-    
-    if love.keyboard.isDown("g")then
-        changeMap("room2")
-    end
+    toMap()
 end
 
 function Game:draw()
@@ -38,7 +35,12 @@ function Game:draw()
         mapdata.map:drawLayer(mapdata.map.layers.floor)
         mapdata.map:drawLayer(mapdata.map.layers.walls)
         drawEntities()
+        Player:draw()
     cam:detach()
     Debug:draw()
+end
+
+function Game:keypressed(key, scancode, isrepeat)
+    Player:keypressed(key, scancode, isrepeat)
 end
 return Game

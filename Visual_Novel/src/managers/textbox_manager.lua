@@ -42,9 +42,9 @@ function Textbox:draw()
             -- icon
             if self.data.img ~= nil then
                 love.graphics.draw(
-                    self.data.img, 
+                    gImages[self.data.img], 
                     6, 51, 0, 
-                    (127 * 1.5) /self.data.img:getWidth(), (127 * 1.5) /self.data.img:getHeight())
+                    (127 * 1.5) /gImages[self.data.img]:getWidth(), (127 * 1.5) /gImages[self.data.img]:getHeight())
                 love.graphics.rectangle("line", 5, 50, 128 * 1.5, 128 * 1.5)
             end
 

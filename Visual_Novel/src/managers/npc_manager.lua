@@ -7,6 +7,7 @@ function Npc:new(data, dialogue, sp, other_anims)
         s.over = false
         s.dir = 2
         s.other_anims = other_anims or function()end
+        s.isClose = false
 
         function s:checkDir()
             if Player.y < self.y and Player.dir == 2 then
@@ -25,15 +26,16 @@ function Npc:new(data, dialogue, sp, other_anims)
         end
         
         ballon_anim = Anim:new("ballon", "ballon_over_npc", {0, 1, 2, 3}, 16)
-
         function s:load()
             self:other_anims()
             self.extraX = - 4.5
             self.extraY = 4
             self.w = 8
-            self.collider = World:newRectangleCollider(self.x + 4, self.y, self.w, self.h / 3)
-            self.collider:setFixedRotation(true)
-            self.collider:setType("static")
+            if self.collider ~= nil then
+                self.collider = World:newRectangleCollider(self.x + 4, self.y, self.w, self.h / 3)
+                self.collider:setFixedRotation(true)
+                self.collider:setType("static")
+            end
         end
 
         function s:onInteract()
@@ -47,18 +49,32 @@ function Npc:new(data, dialogue, sp, other_anims)
 
         local supUpdate = s.update
         function s:update(dt)
-            supUpdate(self)
+            if self.sp ~= nil then
+                self.sp:update(dt)
+            end
+            self:fixAxis()
+    
+            self:setCollision()
             ballon_anim:update(dt)
+    
+            local hit = checkCollision(Player.x, Player.y, Player.w, Player.h, self.x, self.y, self.w + 4, self.h)
+            if hit then
+                self.isClose = true
+            else
+                self.isClose = false
+            end
         end
 
         function s:draw()
             self.sp:draw(self)
 
             if not self.over then
-                love.graphics.draw(
-                    gImages[ballon_anim.texture], 
-                    gFrames[ballon_anim.texture][1][ballon_anim.cur_frame], 
-                    self.x + 4, self.y - self.h - 2)
+                if self.isClose then
+                    love.graphics.draw(
+                        gImages[ballon_anim.texture], 
+                        gFrames[ballon_anim.texture][1][ballon_anim.cur_frame], 
+                        self.x + 4, self.y - self.h - 2)
+                end
             end
         end
         return s

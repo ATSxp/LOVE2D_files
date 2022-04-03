@@ -49,4 +49,11 @@ function Scene:draw()
         v:draw(dt)
     end
 end
+
+function Scene:keypressed(key, scancode, isrepeat)
+    self.states[self.curState]:keypressed(key, scancode, isrepeat)
+    for i, v in  ipairs(self.overlayer)do
+        v:keypressed(key, scancode, isrepeat)
+    end
+end
 return Scene

@@ -2,7 +2,7 @@ return {
     ["dummy"] = Npc:new(
         {
             name = "dummy", 
-            img = gImages.neko_icon
+            img = "neko_icon"
         }, 
         {
             {"Va te catar, marreco!"}
@@ -18,7 +18,7 @@ return {
     ["dummy2"] = Npc:new(
         {
             name = "Josh",
-            img = gImages.luffy_barrigudo_icon,
+            img = "luffy_barrigudo_icon",
         },
         {
             {"Ola!", "Nao ligue para aquele cara, ele e rancoroso"}
@@ -27,6 +27,22 @@ return {
         function(self)
             self.sp:add(Anim:new("down", "dummy", {1}))
             self.sp:add(Anim:new("left", "dummy", {4}))
+            self.sp:add(Anim:new("right", "dummy", {7}))
+        end
+    ),
+
+    ["roger"] = Npc:new(
+        {
+            name = "Roger",
+            img = "joao_icon",
+        },
+        {
+            {"Ola amigo"}
+        },
+        Anim:new("left", "dummy", {4}),
+        function(self)
+            self.sp:add(Anim:new("down", "dummy", {1}))
+            self.sp:add(Anim:new("up", "dummy", {10}))
             self.sp:add(Anim:new("right", "dummy", {7}))
         end
     ),

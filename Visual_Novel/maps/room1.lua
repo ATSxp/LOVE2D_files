@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 5,
-  nextobjectid = 40,
+  nextlayerid = 6,
+  nextobjectid = 44,
   properties = {},
   tilesets = {
     {
@@ -280,6 +280,39 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 5,
+      name = "transition",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 42,
+          name = "room2",
+          type = "",
+          shape = "rectangle",
+          x = 80,
+          y = 96,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["relative_x"] = 0,
+            ["relative_y"] = 0,
+            ["spawn_x"] = 300,
+            ["spawn_y"] = 0
+          }
         }
       }
     }

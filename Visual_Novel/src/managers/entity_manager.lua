@@ -12,6 +12,7 @@ function Entity:new(x, y, sp)
     s.speed = 30
     s.dir = 2
     s.sp = Sprite:new(sp)
+    s.collider = {}
     s.extraX = 0
     s.extraY = 0
 
@@ -42,16 +43,16 @@ function Entity:new(x, y, sp)
     end
 
     function s:setCollision()
+        if self.collider == nil then return end
         self.x = self.collider:getX() + self.extraX
         self.y = self.collider:getY() + self.extraY
         self.collider:setLinearVelocity(self.dx, self.dy)
     end
 
     function s:load()
-        self.collider = World:newBSGRectangleCollider(
+        self.collider = World:newRectangleCollider(
         self.x, self.y, 
-        self.w, self.h,
-        3)
+        self.w, self.h)
     end
     
     function s:update(dt)

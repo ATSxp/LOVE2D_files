@@ -1,7 +1,6 @@
 -- All requires --
 require("src/constants")
 require("src/utils")
-Events = require("src/events")
 
 love.graphics.setDefaultFilter("nearest", "nearest")
 Font = love.graphics.newFont("assets/PublicPixel.ttf")
@@ -36,8 +35,11 @@ Textbox = require("src/managers/textbox_manager")
 Button = require("src/managers/button_manager")
 Entity = require("src/managers/entity_manager")
 Npc = require("src/managers/npc_manager")
-require("src/events_functions")
 Sq = require("src/managers/cutscene_manager")
+
+require("src/events_functions")
+require("src/events")
+require("src/collision_class")
 require("src/destroy_all_map")
 require("src/managers/map_manager")
 loadMap()
@@ -47,3 +49,4 @@ Scene:add("src/scenes/game", "game")
 
 Dummy = require("src/entities/dummy")
 Player = require("src/entities/player")
+require("src/managers/camera_manager")

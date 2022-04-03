@@ -84,7 +84,7 @@ function drawEntities()
 end
 
 function spawnEntities()
-    if mapdata.map.layers.entities then
+    if mapdata.map.layers.entities and entities then
         spawnents = require("src/entities/entities_data")
         local ent
         for i,v in ipairs(mapdata.map.layers.entities.objects)do
@@ -94,6 +94,8 @@ function spawnEntities()
                 ent.name = v.name
                 ent.type = v.type
                 table.insert(entities, ent)
+            else
+                return false
             end
         end
     end
@@ -107,7 +109,7 @@ function layerEntities(a, b)
 end
 
 function interactEntities(e)
-    for i,v in pairs(entities)do
+    for i,v in ipairs(entities)do
         local hit = checkCollision(e.x, e.y, e.w, e.h, v.x, v.y, v.w + 4, v.h)
         if hit and v.onInteract ~= nil then
             v:onInteract()
