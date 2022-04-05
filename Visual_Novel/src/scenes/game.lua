@@ -1,7 +1,6 @@
 local Game = {}
 function Game:load()
-    loadEvents()
-    Sq:new(scenes.intro)
+    -- Sq:new(scenes.intro)
     Debug:load()
     
     World = wf.newWorld(0, 0)
@@ -24,8 +23,8 @@ function Game:update(dt)
         Player:update(dt)
     end
 
+    fade:update(dt)
     cam:update(dt)
-    cameraHideOffSet()
     toMap()
 end
 
@@ -37,6 +36,7 @@ function Game:draw()
         drawEntities()
         Player:draw()
     cam:detach()
+    fade:draw()
     Debug:draw()
 end
 

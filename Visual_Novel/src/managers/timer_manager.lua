@@ -5,15 +5,15 @@ function Timer:new(duration)
     s.duration = duration
 
     function s:complete()
-        return love.timer.getTime() - s.timer > s.duration
+        return love.timer.getTime() - self.timer > self.duration
     end
 
     function s:fraction()
-		return math.min((love.timer.getTime() - s.time) / s.duration, 1.0)
+		return math.min((love.timer.getTime() - self.time) / self.duration, 1.0)
     end
 
     function s:reset()
-        s.time = love.timer.getTime()
+        self.time = love.timer.getTime()
     end
     return s
 end

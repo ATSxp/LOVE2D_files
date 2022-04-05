@@ -1,23 +1,39 @@
 fade = {}
-fade.alpha = 1
-fade.t = 0
+fade.alpha = 0
+fade.state = 0
+fade.time = 0
 
 function fade:update(dt)
-    self.t = self.t + 0.1
-end
+    if self.state ~= 0 then
+        self.alpha = self.alpha + (self.state / self.time * dt)
+        global_pause = 1
+    else
+        global_pause = 0
+    end
 
-function fade:In()
-    self.alpha = self.alpha + self.t
-    if self.alpha > 1 then
+    -- in
+    if self.alpha > 1 and self.state > 0 then
         self.alpha = 1
+        self.state = 0
+    end
+
+    -- out
+    if self.alpha < 0 and self.state < 0 then
+        self.alpha = 0
+        self.state = 0
     end
 end
 
-function fade:Out()
-    self.alpha = self.alpha - self.t
-    if self.alpha < 0  then
-        self.alpha = 0
-    end
+function fade:In(tick)
+    self.alpha = 0
+    self.time = tick or 1
+    self.state = 1    
+end
+
+function fade:Out(tick)
+    self.alpha = 1
+    self.time = tick or 1
+    self.state = - 1    
 end
 
 function fade:draw()

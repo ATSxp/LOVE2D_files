@@ -15,6 +15,7 @@ function Entity:new(x, y, sp)
     s.collider = {}
     s.extraX = 0
     s.extraY = 0
+    s.pause = 0
 
     function s:anim()
         if self.dy < 0 then -- up
@@ -46,7 +47,11 @@ function Entity:new(x, y, sp)
         if self.collider == nil then return end
         self.x = self.collider:getX() + self.extraX
         self.y = self.collider:getY() + self.extraY
-        self.collider:setLinearVelocity(self.dx, self.dy)
+        if self.pause > 0 then
+            self.pause = self.pause - 1
+        else
+            self.collider:setLinearVelocity(self.dx, self.dy)
+        end
     end
 
     function s:load()

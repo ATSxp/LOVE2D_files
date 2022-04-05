@@ -1,5 +1,4 @@
-local player = Entity:new(100, 16, Anim:new("idle_down", "joao_spritesheet", {1}))
-
+local player = Entity:new(32, 128, Anim:new("idle_down", "joao_spritesheet", {1}))
 function player:load()
     self.type = "hero"
     self.name = "player"
@@ -23,33 +22,34 @@ function player:load()
         self.collider:setCollisionClass("player")
         self.collider:setFixedRotation(true)
     end
-    self.speed = 80
+    self.speed = 16
 end
 
 function player:update(dt)
     self.sp:update(dt)
-    local key = love.keyboard.isDown
     self.dx, self.dy = 0, 0
     self:fixAxis()
 
-    if key("up")then
-        self.dy = - self.speed
-        self.dx = 0
-    elseif key("down")then
-        self.dy = self.speed
-        self.dx = 0
-    end
-
-    if key("left")then
-        self.dx = - self.speed
-        self.dy = 0
-    elseif key("right")then
-        self.dx = self.speed
-        self.dy = 0
-    end
+    self:move(dt)
 
     self:anim()
     self:setCollision()
+end
+
+function player:move(dt)
+    local key = love.keyboard.isDown
+    
+    if key("up") and self.dx == 0 then
+        self.dy = - self.speed * 4
+    elseif key("down") and self.dx == 0 then
+        self.dy = self.speed * 4
+    end
+
+    if key("left") and self.dy == 0 then
+        self.dx = - self.speed * 4
+    elseif key("right") and self.dy == 0 then
+        self.dx = self.speed * 4
+    end
 end
 
 function player:keypressed(key, scancode, isrepeat)

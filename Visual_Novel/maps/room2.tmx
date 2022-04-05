@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="22" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="8">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="22" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="17">
  <editorsettings>
   <export target="room2.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" name="school" tilewidth="16" tileheight="16" tilecount="50" columns="5">
   <image source="../assets/tilesets/school.png" width="80" height="160"/>
  </tileset>
- <layer id="1" name="floor" width="22" height="16">
+ <layer id="1" name="floor" width="22" height="10">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -17,45 +17,39 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="2" name="walls" width="22" height="16">
+ <layer id="2" name="walls" width="22" height="10">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,3,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,3,
+3,18,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,
+3,3,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,0,11,12,12,3,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 </data>
  </layer>
  <objectgroup color="#0000ff" id="3" name="entities">
   <object id="5" name="roger" type="npc" x="112" y="32" width="16" height="16"/>
-  <object id="6" name="negao" type="divine" x="160" y="32" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="5" name="solids">
+  <object id="9" x="31" y="0" width="306" height="24"/>
+  <object id="11" x="16" y="24" width="16" height="120"/>
+  <object id="12" x="32" y="128" width="240" height="16"/>
+  <object id="14" x="288" y="128" width="64" height="16"/>
+  <object id="16" x="337" y="0" width="15" height="128"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="transition">
-  <object id="4" name="room1" x="0" y="16" width="16" height="16">
+  <object id="4" name="room1" x="272" y="141" width="16" height="3">
    <properties>
-    <property name="relative_x" type="int" value="0"/>
+    <property name="relative_x" type="int" value="4"/>
     <property name="relative_y" type="int" value="0"/>
-    <property name="spawn_x" type="float" value="300"/>
+    <property name="spawn_x" type="float" value="209"/>
     <property name="spawn_y" type="float" value="32"/>
    </properties>
   </object>

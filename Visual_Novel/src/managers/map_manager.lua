@@ -1,13 +1,13 @@
 mapdata = {}
 mapdata.transitions = {}
 mapdata.walls = {}
+mapdata.room = ""
 
 function loadMap()
     maps = {
         ["room1"] = sti("maps/room1.lua"),
         ["room2"] = sti("maps/room2.lua"),
     }
-
 end
 
 function changeMap(new_map, transition)
@@ -18,12 +18,16 @@ function changeMap(new_map, transition)
         if transition.spawn_x ~= 0 then
             if transition.spawn_x > 0 then
                 Player.collider:setX(transition.spawn_x)
+            else
+                Player.collider:setX(0)
             end
         end
 
         if transition.spawn_y ~= 0 then
             if transition.spawn_y > 0 then
                 Player.collider:setY(transition.spawn_y)
+            else
+                Player.collider:setY(0)
             end
         end
 
@@ -60,6 +64,8 @@ function changeMap(new_map, transition)
         end
     end
 
+    mapdata.room = new_map
+
     spawnEntities()
 
     cam:update(0)
@@ -68,6 +74,7 @@ end
 function toMap()
     for i,v in ipairs(mapdata.transitions)do
         if Player.collider:enter("transition")then
+            fade:Out(1)
             changeMap(v.to_map, {spawn_x = v.spawn_x, spawn_y = v.spawn_y, relative_x = v.relative_x, relative_y = v.relative_y})
             loadEntities()
         end

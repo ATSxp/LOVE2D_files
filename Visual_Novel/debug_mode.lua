@@ -8,11 +8,12 @@ end
 function Debug:update(dt)
     if not self.on then return end
     self.items = {
-        {name = "PlayerX", val = math.floor(Player.x)},
-        {name = "PlayerY", val = math.floor(Player.y)},
-        {name = "Player Dir", val = Player.dir},
-        {name = "Player Speed", val = Player.speed},
-        {name = "Current Animation", val = Player.sp.cur_anim},
+        {n = "Room: ", v = mapdata.room},
+        {n = "PlayerX", v = math.floor(Player.x)},
+        {n = "PlayerY", v = math.floor(Player.y)},
+        {n = "Player Dir", v = Player.dir},
+        {n = "Player Speed", v = Player.speed},
+        {n = "Current Animation", v = Player.sp.cur_anim},
     }
 end
 
@@ -29,11 +30,11 @@ function Debug:draw()
     local x, y = 0, 0
     for i,v in ipairs(self.items)do
         love.graphics.setColor(0, 0, 0, 0.7)
-        love.graphics.rectangle("fill", x, y, Font:getWidth(v.name..": "..v.val), Font:getHeight(v.name..": "..v.val))
+        love.graphics.rectangle("fill", x, y, Font:getWidth(v.n..": "..v.v), Font:getHeight(v.n..": "..v.v))
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.print(v.name..": "..v.val, x, y)
-        y = y + Font:getHeight(v.name..": "..v.val)
-        if  y + Font:getHeight(v.name..": "..v.val) > 500 then
+        love.graphics.print(v.n..": "..v.v, x, y)
+        y = y + Font:getHeight(v.n..": "..v.v)
+        if  y + Font:getHeight(v.n..": "..v.v) > 500 then
             x = x + 40
             y = 0
         end
