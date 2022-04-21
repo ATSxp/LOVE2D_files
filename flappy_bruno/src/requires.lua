@@ -7,6 +7,7 @@ gImages = {
 }
 
 require("src/menu")
+require("src/options")
 require("src/player")
 require("src/walls")
 require("src/game_over")

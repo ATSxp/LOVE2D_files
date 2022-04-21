@@ -1,16 +1,47 @@
 menu = {}
 menu.title = love.window.getTitle()
 menu.cursor_i = 1
-menu.items = {
-    {"Play", function()mode = "game" end},
-    {"Exit", function()love.event.quit()end},
-}
+menu.items = {}
 
 function menu:update(dt)
+    self.items = {
+        {
+            "Play",
+            function()
+                mode = "game"
+                print("==============================\nGAME")
+            end
+        },
+        {
+            "Options",
+            function()
+                mode = "options"
+                print("==============================\nOPTIONS")
+            end
+        },
+        {
+            "Exit", 
+            function()
+                love.event.quit()
+                print("==============================\nEXIT")
+            end
+        },
+    }
 end
 
 function menu:draw()
     love.graphics.setBackgroundColor(0, 0.1, 1)
+
+    local bw, bh = 450, 350
+    local bx, by = (SCREEN_W - bw) / 2, (SCREEN_H - bh) / 2
+
+    love.graphics.setColor(0, 0, 0, 0.8)
+    love.graphics.rectangle("fill", bx, by, bw, bh)
+    
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.rectangle("line", bx, by, bw, bh)
+
+    
     for i,v in ipairs(self.items)do
         local w = Font:getWidth(v[1]) * 4
         local h = Font:getHeight(v[1]) * 4
@@ -28,11 +59,12 @@ function menu:draw()
 end
 
 function menu:keypressed(key, scancode, isrepeat)
-    if key == "down" and self.cursor_i < # self.items then
+    if key == "down" and self.cursor_i < #self.items then
         self.cursor_i = self.cursor_i + 1
     elseif key == "up" and self.cursor_i > 1 then
         self.cursor_i = self.cursor_i - 1
     end
+    
     for i,v in ipairs(self.items)do
         if key == "z" and self.cursor_i == i then
             v[2]()

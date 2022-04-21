@@ -1,5 +1,6 @@
 function love.load()
     debugIsOn = false
+    isPause = false
     love.graphics.setDefaultFilter("nearest")
     Font = love.graphics.newFont("assets/Early GameBoy.ttf", 8)
     love.graphics.setFont(Font)
@@ -9,7 +10,7 @@ function love.load()
     require("src/requires")
 
     mode = "menu"
-    dificulty = "easy"
+    difficulty = "easy"
 
     bkgX1, bkgX2 = 0, 500
     floorX1, floorX2 = 0, 500
@@ -19,10 +20,14 @@ function love.update(dt)
     if mode == "menu" then
         menu:update(dt)
     elseif mode == "game" then
-        walls:new()
-        walls:update(dt)
-        player:update(dt)
-        moveBkg(dt)
+        if not isPause then
+            walls:new()
+            walls:update(dt)
+            player:update(dt)
+            moveBkg(dt)
+        end
+    elseif mode == "options" then
+        options:update(dt)
     end
 
     if player.die and mode ~= "menu" then
@@ -52,6 +57,20 @@ function love.draw()
             printb(player.points, (SCREEN_W - w) / 2, 10, nil, 4, 4)
         
         end
+
+        if isPause then
+            local scale = 4
+            local w = Font:getWidth("PAUSED") * scale
+            local h = Font:getHeight("PAUSED") * scale
+
+            printb(
+                "PAUSED", 
+                (SCREEN_W - w) / 2, (SCREEN_H - h) / 2, nil, 
+                scale, scale, 4
+            )
+        end
+    elseif mode == "options" then
+        options:draw()
     end
 
     if player.die and mode ~= "menu" then
@@ -67,6 +86,12 @@ function love.keypressed(key, scancode, isrepeat)
         if player.die then
             game_over:keypressed(key, scancode, isrepeat)
         end
+
+        if key == "p" then
+            isPause = not isPause
+        end
+    elseif mode == "options" then
+        options:keypressed(key, scancode, isrepeat)
     end
 
     if key == "f1" then
@@ -76,6 +101,9 @@ function love.keypressed(key, scancode, isrepeat)
     if key == "escape" then
         love.event.quit()
     end
+end
+
+function love.keyreleased(key, scancode)
 end
 
 function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
@@ -96,6 +124,9 @@ function reset()
     player.points = 0
     player.y = 0
     player.dy = 0
+    player.rotation = 0
+    game_over.x = - 300
+    game_over.y = (SCREEN_H - game_over.h) / 2
 end
 
 function moveBkg(dt)
@@ -121,16 +152,17 @@ function moveBkg(dt)
     floorX2 = floorX2 - floorSpeed * dt
 end
 
-function printb(text, x, y, r, sx, sy, ox, oy)
+function printb(text, x, y, r, sx, sy, number, ox, oy)
+    local number = number or 4
     local dir = {
-        {0, 4}, {4, 0},
-        {0, - 4}, {- 4, 0},
+        {0, number}, {number, 0},
+        {0, - number}, {- number, 0},
     }
 
     for i = 1, #dir do
         love.graphics.setColor(0, 0, 0)
         love.graphics.print(text, x + dir[i][1], y + dir[i][2], r, sx, sy, ox, oy)
         love.graphics.setColor(1, 1, 1)
-        love.graphics.print(text, x, y, r, sx, sy, ox, oy)
     end
+    love.graphics.print(text, x, y, r, sx, sy, ox, oy)
 end

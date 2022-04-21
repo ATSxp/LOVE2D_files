@@ -1,12 +1,27 @@
 game_over = {}
 game_over.w = 300
 game_over.h = 300
-game_over.x = - 300-- (SCREEN_W - game_over.w) / 2
+game_over.x = - 300
 game_over.y = (SCREEN_H - game_over.h) / 2
 game_over.cursor_i = 1
 game_over.items = {
-    {"Reset", function()reset()end},
-    {"Main Menu", function() mode = "menu" game_over.cursor_i = 1 reset()end},
+    {
+        "Reset", 
+        function()
+            reset()
+            print("==============================\nGAME RESETED")
+        end
+    },
+    {
+        "Main Menu", 
+        function()
+            mode = "menu"
+            game_over.cursor_i = 1
+            reset()
+            print("==============================\nGAME RESETED")
+            print("==============================\nMENU")
+        end
+    },
 }
 
 function game_over:update(dt)
