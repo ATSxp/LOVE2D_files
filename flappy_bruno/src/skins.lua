@@ -97,8 +97,6 @@ function skins:draw()
                     4, 4, 4
                 )
 
-
-
                 -- analyzes whether images or letters will appear in the corner of the screen
                 if self.cursor_i >= 2 then
                     if v[i - 1][2] == nil then

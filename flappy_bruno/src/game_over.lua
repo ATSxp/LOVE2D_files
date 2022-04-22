@@ -8,6 +8,7 @@ game_over.items = {
     {
         "Reset",
         function()
+            -- saveGame()
             reset()
             print("==============================\nGAME RESETED")
         end
@@ -15,6 +16,7 @@ game_over.items = {
     {-- back to menu
         "Main Menu",
         function()
+            saveGame()
             mode = "menu"
             game_over.cursor_i = 1
             reset()

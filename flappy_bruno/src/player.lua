@@ -45,7 +45,7 @@ function player:keypressed(key, scancode, isrepeat)
     if self.die then return end
     
     -- jump
-    if key == "space" then
+    if key == "space" or key == "z" then
         self.dy = - 200
     end
 

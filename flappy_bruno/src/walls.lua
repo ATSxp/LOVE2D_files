@@ -3,7 +3,7 @@ walls.blocks = {} -- here is the data of all the pipes
 walls.speed = 100
 walls.max_spawn_timer = 200
 walls.spawn_timer = walls.max_spawn_timer -- time to spawn
-walls.distance = math.random(64, 130) -- a small distance between the pipes
+walls.distance = math.random(90, 130) -- a small distance between the pipes
 
 -- Make new pipes
 function walls:new()
@@ -14,7 +14,7 @@ function walls:new()
         -- inserting a new table with data to create a new pipe
         table.insert(self.blocks, {
             x1 = 500, -- x axis for the top pipe
-            y1 = math.random(- 400 + 64, 0), -- y axis for the top pipe
+            y1 = math.random(- 400 + 64, - 64), -- y axis for the top pipe
             w1 = 32, -- width of the top pipe
             h1 = 400 - 64, -- height of the top pipe
             box = { -- hitbox which tells us that the player went through the pipes and scored 1 point

@@ -1,4 +1,5 @@
 function love.load()
+    math.randomseed(os.time())
     debugIsOn = false -- Debug mode ON/OFF
     isPause = false -- Pause mode ON/OFF
 
@@ -13,22 +14,29 @@ function love.load()
     mode = "menu" -- mode = menu/game/options...
     difficulty = "easy"
     maxScore = 0 -- score record
+    currentPoints = 0
 
     -- variables for background and background floor
     bkgX1, bkgX2 = 0, 500
     floorX1, floorX2 = 0, 500
 
     debug = Debug() -- here is returning drawing and updating variables and functions to debug mode
+
+    data = {}
+    data.countSaves = 0
+
+    loadGame()
 end
 
 function love.update(dt)
+    
     -- shortcut to enable debug mode
     if love.keyboard.isDown("left") and love.keyboard.isDown("up") then
         debugIsOn = true
     end
 
     debug:update(dt)
-
+    
     if mode == "menu" then
         menu:update(dt)
     elseif mode == "game" then
@@ -37,28 +45,36 @@ function love.update(dt)
             walls:update(dt)
             player:update(dt)
             moveBkg(dt)
-            
-            -- instruction for when player breaks a record
-            if player.points > maxScore then
-                maxScore = player.points
-            end
         end
+        
+        -- instruction for when player breaks a record
+        if player.points > currentPoints then
+            currentPoints = player.points
+            print("==============================\nBREAK RECORD!!")
+        end
+
+        if currentPoints > maxScore then
+            maxScore = currentPoints
+            print("==============================\nCURRENT HIGH RECORD: "..maxScore)
+        end
+
     elseif mode == "options" then
         options:update(dt)
     elseif mode == "skins" then
         skins:update(dt)
     end
-
+    
     if player.die and mode ~= "menu" then
         game_over:update(dt)
     end
+    
 end
 
 function love.draw()
     if mode == "menu" then
         menu:draw()
     elseif mode == "game" then
-
+        
         -- background
         love.graphics.draw(gImages["bkg"], bkgX1, 0, nil, 4, 4)
         love.graphics.draw(gImages["bkg"], bkgX2, 0, nil, 4, 4)
@@ -246,4 +262,27 @@ function Debug()
         end
     end
     return s
+end
+
+function saveGame()
+    data.countSaves = data.countSaves + 1
+    data.maxScore = maxScore
+    data.currentPoints = currentPoints
+    data.currentSkin = player.img
+
+    love.filesystem.write("save.lua", table.show(data, "data"))
+    print("==============================\nSAVED GAME\nSAVED TIMES: "..data.countSaves)
+end
+
+function loadGame()
+    if love.filesystem.getInfo("save.lua") ~= nil then
+        print("==============================\nEXISTING SAVE, LOADING...")
+        local load = love.filesystem.load("save.lua")
+        load()
+        maxScore = data.maxScore
+        currentPoints = data.currentPoints
+        player.img = data.currentSkin
+    else
+        print("==============================\nSAVE DOESN'T EXIST, LOADING GAME FROM ZERO...")
+    end
 end

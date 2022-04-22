@@ -36,6 +36,7 @@ function options:update(dt)
             "Back", 
             nil, 
             function()
+                self.cursor_i = 1
                 mode = "menu"
                 print("==============================\nMENU")
             end
