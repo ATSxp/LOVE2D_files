@@ -1,6 +1,6 @@
 menu = {}
-menu.title = love.window.getTitle()
-menu.cursor_i = 1
+menu.title = love.window.getTitle() -- title of the game
+menu.cursor_i = 1 -- index cursor
 menu.items = {}
 
 function menu:update(dt)
@@ -50,25 +50,33 @@ function menu:draw()
 
         local tw = Font:getWidth(self.title) * 4
         local th =  Font:getHeight(self.title) * 4
+        
         printb(self.title, (SCREEN_W - tw) / 2, th, nil, 4, 4)
+        
         printb(v[1], x, y, nil, 4, 4)
+        
         if self.cursor_i == i then
             printb("~", x - 40, y, nil, 4, 4)
         end
+
     end
 end
 
 function menu:keypressed(key, scancode, isrepeat)
+    -- move cursor
     if key == "down" and self.cursor_i < #self.items then
         self.cursor_i = self.cursor_i + 1
     elseif key == "up" and self.cursor_i > 1 then
         self.cursor_i = self.cursor_i - 1
     end
     
+    -- active the button
     for i,v in ipairs(self.items)do
+
         if key == "z" and self.cursor_i == i then
             v[2]()
         end
+        
     end
 end
 return menu

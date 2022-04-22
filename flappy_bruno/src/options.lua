@@ -1,11 +1,11 @@
 options = {}
 options.items = {}
-options.cursor_i = 1
+options.cursor_i = 1 -- index cursor
 
-local indx = 1
+local indx = 1 -- local index for a function
 function options:update(dt)
     self.items = {
-        {
+        {-- change the game difficulty
             "Difficulty", 
             difficulty, 
             function()
@@ -19,9 +19,20 @@ function options:update(dt)
                 
                 difficulty = difs[indx]
                 print("==============================\nDIFFICULTY: "..string.upper(difficulty))
-            end,
+            end
         },
-        {
+        {-- the high score
+            "Score Record",
+            maxScore,
+        },
+        {-- change player skins
+            "Skins",
+            nil,
+            function()
+               mode = "skins" 
+            end
+        },
+        {-- back to menu
             "Back", 
             nil, 
             function()
@@ -60,16 +71,24 @@ function options:draw()
 end
 
 function options:keypressed(key, scancode, isrepeat)
+    -- move cursor
     if key == "down" and self.cursor_i < #self.items then
         self.cursor_i = self.cursor_i + 1
     elseif key == "up" and self.cursor_i > 1 then
         self.cursor_i = self.cursor_i - 1
     end
 
+    -- active the button
     for i,v in ipairs(self.items)do
+
         if self.cursor_i == i and key == "z" then
-            v[3]()
+            -- check if the function exists
+            if v[3] then
+                v[3]()
+            end
+
         end
+
     end
 end
 return options
