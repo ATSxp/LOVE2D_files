@@ -102,8 +102,8 @@ function skins:draw()
                     if v[i - 1][2] == nil then
                         printb(
                             v[i - 1][1], 
-                            0, 30, nil, 
-                            printScaleOtherX, printScaleOtherY, 4
+                            8, 30, nil, 
+                            printScaleOtherX - 0.5, printScaleOtherY, 4
                         )
                     else
                         love.graphics.draw(
@@ -119,8 +119,8 @@ function skins:draw()
                     if v[i + 1][2] == nil then
                         printb(
                             v[i + 1][1], 
-                            SCREEN_W - printOtherW, 30, nil, 
-                            printScaleOtherX, printScaleOtherY, 4
+                            (SCREEN_W - printOtherW) + 16, 30, nil, 
+                            printScaleOtherX + 1, printScaleOtherY, 4
                         )
                     else
                         love.graphics.draw(

@@ -30,7 +30,9 @@ function menu:update(dt)
 end
 
 function menu:draw()
-    love.graphics.setBackgroundColor(0, 0.1, 1)
+    love.graphics.setColor(0, 0.1, 1)
+    love.graphics.rectangle("fill", 0, 0, SCREEN_W, SCREEN_H)
+    love.graphics.setColor(1, 1, 1)
 
     local bw, bh = 450, 350
     local bx, by = (SCREEN_W - bw) / 2, (SCREEN_H - bh) / 2

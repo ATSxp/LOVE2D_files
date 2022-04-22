@@ -1,8 +1,10 @@
 function love.load()
     math.randomseed(os.time())
+    
     debugIsOn = false -- Debug mode ON/OFF
     isPause = false -- Pause mode ON/OFF
 
+    canvas = love.graphics.newCanvas(500, 400)
     love.graphics.setDefaultFilter("nearest") -- does not make the pixels blurry
     Font = love.graphics.newFont("assets/Early GameBoy.ttf", 8)
     love.graphics.setFont(Font)
@@ -26,6 +28,7 @@ function love.load()
     data.countSaves = 0
 
     loadGame()
+
 end
 
 function love.update(dt)
@@ -71,6 +74,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.setCanvas(canvas)
+    love.graphics.clear()
+    
     if mode == "menu" then
         menu:draw()
     elseif mode == "game" then
@@ -87,7 +93,7 @@ function love.draw()
         player:draw()
         
         if not player.die then
-        
+            
             local font = love.graphics.getFont()
             local w = font:getWidth(player.points)
         
@@ -99,7 +105,7 @@ function love.draw()
             local scale = 4
             local w = Font:getWidth("PAUSED") * scale
             local h = Font:getHeight("PAUSED") * scale
-
+            
             printb(
                 "PAUSED", 
                 (SCREEN_W - w) / 2, (SCREEN_H - h) / 2, nil, 
@@ -117,6 +123,11 @@ function love.draw()
     end
 
     debug:draw()
+    
+    love.graphics.setCanvas()
+    
+    love.graphics.setColor(0, 0, 0)
+    PBScreen.drawCanvas(canvas, 500, 400)
 end
 
 function love.keypressed(key, scancode, isrepeat)
